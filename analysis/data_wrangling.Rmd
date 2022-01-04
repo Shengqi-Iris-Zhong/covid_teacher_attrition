@@ -14,7 +14,7 @@ library(tidyverse)
 ```
 
 ```{r import data}
-data_2020 <- read_excel(here("data/xlsx", "2020-21 Professional Personnel Individual Staff Report.xlsx"))
+data_2020 <- read_excel(here("data/xlsx", "2020-21 Professional Personnel Individual Staff Report.xlsx")) %>% mutate(PublicID = as.numeric(PublicID))
 
 data_2014 <- read_excel(here("data/xlsx", "2014-15 Professional Personnel Individual Staff Report.xlsx"))
 
@@ -30,14 +30,11 @@ data_2019 <- read_excel(here("data/xlsx", "2019-20 Professional Personnel Indivi
 
 ```
 
-# Exploration
-
-```{r}
-head(data_2014)
-```
+# Exploration (don't run)
 
 
-```{r use name as ID}
+
+```{r use name as ID, include = F}
 data_2014_clean <- data_2014 %>%
   unite("name", c(`First Name`, `MiddleName`, `Last Name`, Suffix), sep=" ", 
         remove = FALSE, na.rm = TRUE) %>%
@@ -45,14 +42,11 @@ data_2014_clean <- data_2014 %>%
   mutate(person_ID = group_indices(., name))
 ```
 
-```{r}
-head(data_2014_clean)
-```
 
 
 Doesn't work well 
 
-```{r}
+```{r include = F}
 data_2014_clean %>%
   group_by(person_ID, PublicID) %>%
   summarize(n = n()) %>%
@@ -61,7 +55,7 @@ data_2014_clean %>%
 
 
 
-```{r}
+```{r include= F}
 data_2014_clean %>%
   group_by(person_ID) %>%
   summarize(n = n()) %>%
@@ -69,7 +63,7 @@ data_2014_clean %>%
 ```
 
 
-```{r}
+```{r include = F}
 data_2014_clean %>%
   filter(person_ID ==875)
 ```
@@ -77,13 +71,13 @@ data_2014_clean %>%
 Only 2020-21 uses different PublicID. 
 
 
-```{r}
+```{r include = F}
 data_2014 %>%
   inner_join(data_2015, by = c("PublicID")) %>%
   filter(Status.y != "Active")
 ```
 
-# Clean 2014-2019 data
+# Clean 2014-2020 data
 
 Select year and public ID
 
@@ -98,11 +92,11 @@ select_var <- function(data) {
 
 
 ```{r apply select func}
-data_list <- list(data_2014, data_2015, data_2016, data_2017, data_2018, data_2019)
+data_list <- list(data_2014, data_2015, data_2016, data_2017, data_2018, data_2019, data_2020)
 
 temp <- lapply(data_list, function(x){x <- x %>% dplyr::select(SY, PublicID); return (x)})
 
-names(temp) <- c("data_2014_short", "data_2015_short", "data_2016_short", "data_2017_short", "data_2018_short","data_2019_short")
+names(temp) <- c("data_2014_short", "data_2015_short", "data_2016_short", "data_2017_short", "data_2018_short","data_2019_short", "data_2020_short")
 
 list2env(temp, envir = .GlobalEnv)
 ```
@@ -114,47 +108,55 @@ data_2016_short <- distinct(data_2016_short, .keep_all = T)
 data_2017_short <- distinct(data_2017_short, .keep_all = T)
 data_2018_short <- distinct(data_2018_short, .keep_all = T)
 data_2019_short <- distinct(data_2019_short, .keep_all = T)
+data_2020_short <- distinct(data_2020_short, .keep_all = T)
 ```
+
+Take a look at ID: 180041809 (a lot of rows)
 
 
 ```{r join datasets}
-data_14_19_short <- data_2014_short %>%
+data_14_20_short <- data_2014_short %>%
   full_join(data_2015_short, by = "PublicID") %>%
   full_join(data_2016_short, by = "PublicID") %>%
   full_join(data_2017_short, by = "PublicID") %>%
   full_join(data_2018_short, by = "PublicID") %>%
-  full_join(data_2019_short, by = "PublicID") 
+  full_join(data_2019_short, by = "PublicID") %>%
+  full_join(data_2020_short, by = "PublicID")
 ```
 
 
 ```{r change column names}
-data_14_19_short %>% head()
+data_14_20_short %>% head()
 
-data_14_19_short <- data_14_19_short %>%
+data_14_20_short <- data_14_20_short %>%
   mutate(Y14 = SY.x, Y15 = SY.y, Y16 = SY.x.x,
-         Y17 = SY.y.y, Y18 = SY.x.x.x, Y19 = SY.y.y.y) %>%
-  select(PublicID, Y14:Y19)
+         Y17 = SY.y.y, Y18 = SY.x.x.x, Y19 = SY.y.y.y, Y20 = SY) %>%
+  select(PublicID, Y14:Y20)
 ```
 
 
 ```{r convert to binary}
-data_14_19_short <- data_14_19_short %>%
+data_14_20_short <- data_14_20_short %>%
   mutate(Y14 = ifelse(is.na(Y14) == T, 0, 1),
          Y15 = ifelse(is.na(Y15) == T, 0, 1),
          Y16 = ifelse(is.na(Y16) == T, 0, 1),
          Y17 = ifelse(is.na(Y17) == T, 0, 1),
          Y18 = ifelse(is.na(Y18) == T, 0, 1),
-         Y19 = ifelse(is.na(Y19) == T, 0, 1))
+         Y19 = ifelse(is.na(Y19) == T, 0, 1),
+         Y20 = ifelse(is.na(Y20) == T, 0, 1))
 ```
 
 
 
 ```{r}
-sum(data_14_19_short$Y14)
-sum(data_14_19_short$Y15)
-sum(data_14_19_short$Y16)
-sum(data_14_19_short$Y17)
-sum(data_14_19_short$Y18)
-sum(data_14_19_short$Y19)
+sum(data_14_20_short$Y14)
+sum(data_14_20_short$Y15)
+sum(data_14_20_short$Y16)
+sum(data_14_20_short$Y17)
+sum(data_14_20_short$Y18)
+sum(data_14_20_short$Y19)
+sum(data_14_20_short$Y20)
 ```
 
+
+# Years of experience for 
