@@ -151,7 +151,7 @@ data_14_20_short <- data_14_20_short %>%
 
 
 
-```{r}
+```{r number of teachers each year}
 sum(data_14_20_short$Y14)
 sum(data_14_20_short$Y15)
 sum(data_14_20_short$Y16)
@@ -164,28 +164,29 @@ sum(data_14_20_short$Y20)
 
 # Years of experience + drop out
 
-```{r}
+```{r create a easier to see version}
 data_14_20_short <- data_14_20_short %>%
   mutate(state = paste(Y14, Y15, Y16, Y17, Y18, Y19, Y20, sep = ""))
-```
 
-```{r}
 data_14_20_short %>%
   group_by(state) %>%
   summarize(n = n())
 ```
 
   
-```{r}
+```{r calculate exit rate bye experience}
 exit_rate <- c(NA)
 exit_rate_year_exp <- data.frame()
-for (i in 3:8) {
+# iterate over year
+for (i in 3:8) { # column index
+  # if this year == 0 and last year == 1: exit
   data_14_20_find_dropout <- data_14_20_short %>%
     mutate(drop_yes = ifelse(.[[i]] == 0 & .[[i-1]] == 1, 1, 0))
-  dataset_name <- paste("data", i+2011, sep = "_")
+  # join by large annual dataset
   temp_data <- data_14_20_find_dropout %>%
     inner_join(data_list[[i-2]], by = "PublicID")
   exit_rate <- append(exit_rate, sum(temp_data$drop_yes)/nrow(temp_data))
+  # group by years of experience
   temp_data <- distinct(temp_data, PublicID, .keep_all = T) %>%
     group_by(YearsInEd) %>%
     summarize(n = n(),
@@ -197,14 +198,14 @@ for (i in 3:8) {
 }
 ```
   
-```{r}
+```{r create summary table}
 year_list <- c("2014-15", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20", "2020-21")
 n_list <- c(sum(data_14_20_short$Y14), sum(data_14_20_short$Y15), sum(data_14_20_short$Y16), sum(data_14_20_short$Y17),
             sum(data_14_20_short$Y18), sum(data_14_20_short$Y19), sum(data_14_20_short$Y20))
 summary_table <- data.frame(year_list, n_list, exit_rate)
 ```
 
-```{r}
+```{r write table}
 write.csv(summary_table, "year_summary.csv", row.names = FALSE)
 write.csv(exit_rate_year_exp,"exit_rate_year_exp.csv", row.names = FALSE)
 ```
