@@ -14,7 +14,7 @@ library(tidyverse)
 ```
 
 ```{r import data}
-data_2020 <- read_excel(here("data/xlsx", "2020-21 Professional Personnel Individual Staff Report.xlsx")) %>% mutate(PublicID = as.numeric(PublicID))
+data_2020 <- read_excel(here("data/xlsx", "2020-21 Professional Personnel Individual Staff Report updated.xlsx")) %>% mutate(PublicID = as.numeric(PublicID))
 
 data_2014 <- read_excel(here("data/xlsx", "2014-15 Professional Personnel Individual Staff Report.xlsx"))
 
@@ -159,4 +159,10 @@ sum(data_14_20_short$Y20)
 ```
 
 
-# Years of experience for 
+# Years of experience + drop out
+
+```{r}
+data_14_20_short <- data_14_20_short %>%
+  mutate(state = paste(Y14, Y15, Y16, Y17, Y18, Y19, Y20, sep = ""))
+```
+
