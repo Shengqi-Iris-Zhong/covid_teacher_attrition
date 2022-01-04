@@ -14,7 +14,10 @@ library(tidyverse)
 ```
 
 ```{r import data}
-data_2020 <- read_excel(here("data/xlsx", "2020-21 Professional Personnel Individual Staff Report updated.xlsx")) %>% mutate(PublicID = as.numeric(PublicID))
+data_2020 <- read_excel(here("data/xlsx", "2020-21 Professional Personnel Individual Staff Report updated.xlsx")) %>% 
+  mutate(PublicID = as.numeric(PublicID)) %>% 
+  rename(YearsInEd = YearsInED) %>%
+  mutate(AnnualSalary = ifelse(AnnualSalary == "Salary Excluded for Fictitious", NA, AnnualSalary))
 
 data_2014 <- read_excel(here("data/xlsx", "2014-15 Professional Personnel Individual Staff Report.xlsx"))
 
@@ -24,9 +27,9 @@ data_2016 <- read_excel(here("data/xlsx", "2016-17 Professional Personnel Indivi
 
 data_2017 <- read_excel(here("data/xlsx", "2017-18 Professional Personnel Individual Staff Report.xlsx"))
 
-data_2018 <- read_excel(here("data/xlsx", "2018-19 Professional Personnel Individual Staff Report.xlsx"))
+data_2018 <- read_excel(here("data/xlsx", "2018-19 Professional Personnel Individual Staff Report.xlsx")) %>% rename(YearsInEd = YearsInED)
 
-data_2019 <- read_excel(here("data/xlsx", "2019-20 Professional Personnel Individual Staff Report.xlsx"))
+data_2019 <- read_excel(here("data/xlsx", "2019-20 Professional Personnel Individual Staff Report.xlsx")) %>% rename(YearsInEd = YearsInED)
 
 ```
 
@@ -81,7 +84,7 @@ data_2014 %>%
 
 Select year and public ID
 
-```{r select func}
+```{r select func, include = F}
 select_var <- function(data) {
   
   data <- data %>%
@@ -164,5 +167,45 @@ sum(data_14_20_short$Y20)
 ```{r}
 data_14_20_short <- data_14_20_short %>%
   mutate(state = paste(Y14, Y15, Y16, Y17, Y18, Y19, Y20, sep = ""))
+```
+
+```{r}
+data_14_20_short %>%
+  group_by(state) %>%
+  summarize(n = n())
+```
+
+  
+```{r}
+exit_rate <- c(NA)
+exit_rate_year_exp <- data.frame()
+for (i in 3:8) {
+  data_14_20_find_dropout <- data_14_20_short %>%
+    mutate(drop_yes = ifelse(.[[i]] == 0 & .[[i-1]] == 1, 1, 0))
+  dataset_name <- paste("data", i+2011, sep = "_")
+  temp_data <- data_14_20_find_dropout %>%
+    inner_join(data_list[[i-2]], by = "PublicID")
+  exit_rate <- append(exit_rate, sum(temp_data$drop_yes)/nrow(temp_data))
+  temp_data <- distinct(temp_data, PublicID, .keep_all = T) %>%
+    group_by(YearsInEd) %>%
+    summarize(n = n(),
+              exit_rate_by_exp = mean(drop_yes),
+              exit_n_by_exp = sum(drop_yes)) %>%
+    mutate(year = paste(i+2012, i+2013-2000, sep = "-"))
+  
+   exit_rate_year_exp <- rbind(exit_rate_year_exp, temp_data) 
+}
+```
+  
+```{r}
+year_list <- c("2014-15", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20", "2020-21")
+n_list <- c(sum(data_14_20_short$Y14), sum(data_14_20_short$Y15), sum(data_14_20_short$Y16), sum(data_14_20_short$Y17),
+            sum(data_14_20_short$Y18), sum(data_14_20_short$Y19), sum(data_14_20_short$Y20))
+summary_table <- data.frame(year_list, n_list, exit_rate)
+```
+
+```{r}
+write.csv(summary_table, "year_summary.csv", row.names = FALSE)
+write.csv(exit_rate_year_exp,"exit_rate_year_exp.csv", row.names = FALSE)
 ```
 
