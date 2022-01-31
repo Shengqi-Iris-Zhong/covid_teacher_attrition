@@ -1,0 +1,93 @@
+---
+title: "Validation with RFA"
+author: "Iris Zhong"
+date: "1/30/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(here)
+library(readxl)
+# library(readxlsb)
+library(tidyverse)
+```
+
+
+```{r import data}
+data_2020 <- read_excel(here("data/xlsx", "2020-21 Professional Personnel Individual Staff Report updated.xlsx")) %>% 
+  mutate(PublicID = as.numeric(PublicID)) %>% 
+  rename(YearsInEd = YearsInED) %>%
+  mutate(AnnualSalary = ifelse(AnnualSalary == "Salary Excluded for Fictitious", NA, AnnualSalary))
+
+data_2014 <- read_excel(here("data/xlsx", "2014-15 Professional Personnel Individual Staff Report.xlsx"))
+
+data_2015 <- read_excel(here("data/xlsx", "2015-16 Professional Personnel Individual Staff Report.xlsx"))
+
+data_2016 <- read_excel(here("data/xlsx", "2016-17 Professional Personnel Individual Staff Report.xlsx"))
+
+data_2017 <- read_excel(here("data/xlsx", "2017-18 Professional Personnel Individual Staff Report.xlsx"))
+
+data_2018 <- read_excel(here("data/xlsx", "2018-19 Professional Personnel Individual Staff Report.xlsx")) %>% rename(YearsInEd = YearsInED)
+
+data_2019 <- read_excel(here("data/xlsx", "2019-20 Professional Personnel Individual Staff Report.xlsx")) %>% rename(YearsInEd = YearsInED)
+
+```
+
+RFA counting method:
+
+> Teacher counts are the full-time equivalent (FTE) of teachers at every school.
+For example, a teacher who worked 50% FTE (half-time) at two separate schools would be counted as ½ of a teacher (i.e., ½ FTE) at each of the two schools. 
+
+```{r}
+data_2014_teacher <- data_2014 %>% filter(CategoryDescription == "Classroom Teachers") 
+data_2015_teacher <- data_2015 %>% filter(CategoryDescription == "Classroom Teachers") 
+data_2016_teacher <- data_2016 %>% filter(`Category Description 2017-` == "Classroom Teachers")
+data_2017_teacher <- data_2017 %>% filter(`Category Description 2017-` == "Classroom Teachers")
+data_2018_teacher <- data_2018 %>% filter(`Category Description 2017-` == "Classroom Teachers")
+data_2019_teacher <- data_2019 %>% filter(`Category Description 2017-` == "Classroom Teachers")
+data_2020_teacher <- data_2020 %>% filter(`Category Description 2017-` == "Classroom Teachers")
+```
+
+
+
+```{r write clean function}
+clean_data <- function(data) {
+  
+  data <- data %>% 
+    mutate(FTE = as.numeric(`FTE%`)/100) %>%
+    dplyr::select(SY, PublicID, FTE)
+  
+  return(data)
+  
+}
+```
+
+
+```{r}
+data_list <- list(data_2014_teacher, data_2015_teacher, data_2016_teacher, data_2017_teacher, data_2018_teacher, data_2019_teacher, data_2020_teacher)
+
+temp <- lapply(data_list, clean_data)
+```
+
+```{r}
+teacher_n_summary<- sapply(temp, function(x){return(sum(x$FTE))})
+```
+
+```{r}
+teacher_n_rfa <- c(116944, 116450, 118273, 118244, 119308, 119966, NA)
+```
+
+```{r}
+year_list <- c("2014-15", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20", "2020-21")
+teacher_n_compare <- data.frame(year_list, teacher_n_summary, teacher_n_rfa) %>%
+  pivot_longer(cols = c("teacher_n_summary", "teacher_n_rfa"), names_to = "source", values_to = "n")
+```
+
+```{r}
+ggplot(teacher_n_compare, aes(x = year_list, y = n, color = source, group = source)) +
+  geom_point() +
+  geom_path() +
+  geom_text(aes(label = n), vjust = 0.8, nudge_x = .2)
+```
+

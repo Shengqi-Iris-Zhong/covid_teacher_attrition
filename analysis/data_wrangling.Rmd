@@ -174,7 +174,7 @@ data_14_20_short %>%
 ```
 
   
-```{r calculate exit rate bye experience}
+```{r calculate exit rate by experience}
 exit_rate <- c(NA)
 exit_rate_year_exp <- data.frame()
 # iterate over year
@@ -204,7 +204,7 @@ n_list <- c(sum(data_14_20_short$Y14), sum(data_14_20_short$Y15), sum(data_14_20
 summary_table <- data.frame(year_list, n_list, exit_rate)
 ```
 
-```{r write table}
+```{r write table, include = F}
 write.csv(summary_table, "year_summary.csv", row.names = FALSE)
 write.csv(exit_rate_year_exp,"exit_rate_year_exp.csv", row.names = FALSE)
 ```
@@ -226,6 +226,30 @@ ggplot(exit_rate_year_exp, aes(x = YearsInEd, y = exit_rate_by_exp, color = year
   geom_line()
 ```
 
+## Group previous years together
+
+```{r}
+exit_rate_year_exp_grouped <- exit_rate_year_exp %>%
+  mutate(is_2020 = ifelse(year == "2020-21", 1, 0)) %>%
+  group_by(is_2020, YearsInEd) %>%
+  summarize(exit_rate_by_exp = mean(exit_rate_by_exp),
+            exit_n = mean(exit_n_by_exp)) %>%
+  filter(YearsInEd <= 40)
+```
+
+```{r}
+ggplot(exit_rate_year_exp_grouped, aes(x = YearsInEd, y = exit_n, color = as.factor(is_2020))) +
+  geom_point() +
+  geom_line()
+```
+
+
+```{r}
+ggplot(exit_rate_year_exp_grouped, aes(x = YearsInEd, y = exit_rate_by_exp, color = as.factor(is_2020))) +
+  geom_point() +
+  geom_line()
+```
+
 
 
 # Number of teachers per school
@@ -243,7 +267,7 @@ for (i in 1:7) {
 }
 ```
 
-```{r include = F}
+```{r eval=FALSE, include=FALSE}
 teacher_n_by_school <- teacher_n_by_school %>%
   pivot_wider(id_cols = "SchNum", names_from = "year", values_from = "teacher_n")
 ```
@@ -254,9 +278,6 @@ teacher_n_by_school <- teacher_n_by_school %>%
 teacher_n_by_school <- teacher_n_by_school %>% filter(!SchNum %in% c("0000", "9999", "Off-Site"))
 ```
 
-```{r}
-teacher_n_by_school %>% filter(teacher_n > 500)
-```
 
 ```{r}
 teacher_n_summary <- teacher_n_by_school %>%
@@ -291,5 +312,119 @@ plot_n +
   geom_line(data = teacher_n_by_school, aes(x = year, y = teacher_n, group = SchNum),alpha = .01, width = .25) +
 
   ylim(0,150) 
+```
+
+# Income and exit rate
+
+Is their an income difference between teachers who dropped and teachers who stayed?
+
+```{r calculate exit rate by experience}
+exit_rate <- c(NA)
+exit_rate_year_exp <- data.frame()
+# iterate over year
+for (i in 3:8) {
+  data_14_20_find_dropout <- data_14_20_short %>%
+    mutate(drop_yes = ifelse(.[[i]] == 0 & .[[i-1]] == 1, 1, 0))
+  # dataset_name <- paste("data", i+2011, sep = "_")
+  temp_data <- data_14_20_find_dropout %>%
+    inner_join(data_list[[i-2]], by = "PublicID")
+  temp_data <- distinct(temp_data, PublicID, .keep_all = T)
+  exit_rate <- append(exit_rate, sum(temp_data$drop_yes)/nrow(temp_data))
+  temp_data <- temp_data %>%
+    group_by(YearsInEd) %>%
+    summarize(n = n(),
+              exit_rate_by_exp = mean(drop_yes),
+              exit_n_by_exp = sum(drop_yes)) %>%
+    mutate(year = paste(i+2012, i+2013-2000, sep = "-"))
+
+   exit_rate_year_exp <- rbind(exit_rate_year_exp, temp_data)
+}
+```
+
+```{r}
+exp_income_exitrate <- data.frame()
+for (i in 3:8) {
+  data_14_20_find_dropout <- data_14_20_short %>%
+    mutate(drop_yes = ifelse(.[[i]] == 0 & .[[i-1]] == 1, 1, 0))
+  # dataset_name <- paste("data", i+2011, sep = "_")
+  temp_data <- data_14_20_find_dropout %>%
+    inner_join(data_list[[i-2]], by = "PublicID")
+  temp_data <- distinct(temp_data, PublicID, .keep_all = T)
+  
+  temp_data <- temp_data %>%
+    mutate(AnnualSalary = as.numeric(AnnualSalary),
+           YearsInEd = as.numeric(YearsInEd)) %>%
+    group_by(YearsInEd, drop_yes) %>%
+    summarize(n = n(),
+              median_inc = median(AnnualSalary, na.rm = F)) %>%
+    mutate(year = paste(i+2012, i+2013-2000, sep = "-"))
+  
+  exp_income_exitrate <- rbind(exp_income_exitrate, temp_data)
+}
+
+```
+
+
+
+```{r}
+exp_income_exitrate_noold <- exp_income_exitrate %>%
+  filter(YearsInEd <= 40)
+ggplot(exp_income_exitrate_noold, aes(x = YearsInEd, y = median_inc, color = as.factor(drop_yes))) +
+  geom_point() +
+  geom_line() +
+  facet_wrap(~year, nrow = 3) +
+  theme_classic()
+```
+
+
+# Remove administrative
+```{r}
+data_2015 %>%
+  filter(CategoryDescription != "Classroom Teachers") %>%
+  head(10)
+
+data_2020 %>%
+  filter(`Category Description 2017-` != "Classroom Teachers") %>%
+  head(10)
+```
+
+```{r}
+data_2014_teacher <- data_2014 %>% filter(CategoryDescription == "Classroom Teachers") 
+data_2015_teacher <- data_2015 %>% filter(CategoryDescription == "Classroom Teachers") 
+data_2016_teacher <- data_2016 %>% filter(`Category Description 2017-` == "Classroom Teachers")
+data_2017_teacher <- data_2017 %>% filter(`Category Description 2017-` == "Classroom Teachers")
+data_2018_teacher <- data_2018 %>% filter(`Category Description 2017-` == "Classroom Teachers")
+data_2019_teacher <- data_2019 %>% filter(`Category Description 2017-` == "Classroom Teachers")
+data_2020_teacher <- data_2020 %>% filter(`Category Description 2017-` == "Classroom Teachers")
+
+```
+
+
+```{r}
+data_2014_teacher <- distinct(data_2014_teacher, PublicID, .keep_all = T)
+data_2015_teacher <- distinct(data_2015_teacher, PublicID, .keep_all = T)
+data_2016_teacher <- distinct(data_2016_teacher, PublicID, .keep_all = T)
+data_2017_teacher <- distinct(data_2017_teacher, PublicID, .keep_all = T)
+data_2018_teacher <- distinct(data_2018_teacher, PublicID, .keep_all = T)
+data_2019_teacher <- distinct(data_2019_teacher, PublicID, .keep_all = T)
+data_2020_teacher <- distinct(data_2020_teacher, PublicID, .keep_all = T)
+```
+
+
+```{r}
+teacher_n_summary <- sapply(list(data_2014_teacher, data_2015_teacher,data_2016_teacher, data_2017_teacher,data_2018_teacher, data_2019_teacher,data_2020_teacher),function(x){nrow(x)})
+
+teacher_n_rfa <- c(116944, 116450, 118273, 118244, 119308, 119966, NA)
+
+teacher_n_compare <- data.frame(year_list, teacher_n_summary, teacher_n_rfa) %>%
+  pivot_longer(cols = c("teacher_n_summary", "teacher_n_rfa"), names_to = "source", values_to = "n")
+```
+
+
+
+```{r}
+ggplot(teacher_n_compare, aes(x = year_list, y = n, color = source, group = source)) +
+  geom_point() +
+  geom_path()
 ```
 
