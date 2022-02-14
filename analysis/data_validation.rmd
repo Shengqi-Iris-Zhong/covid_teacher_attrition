@@ -39,6 +39,12 @@ RFA counting method:
 > Teacher counts are the full-time equivalent (FTE) of teachers at every school.
 For example, a teacher who worked 50% FTE (half-time) at two separate schools would be counted as ½ of a teacher (i.e., ½ FTE) at each of the two schools. 
 
+
+# First try
+
+only select classroom teachers, and use their FTE as percentages
+
+
 ```{r}
 data_2014_teacher <- data_2014 %>% filter(CategoryDescription == "Classroom Teachers") 
 data_2015_teacher <- data_2015 %>% filter(CategoryDescription == "Classroom Teachers") 
@@ -86,6 +92,353 @@ teacher_n_compare <- data.frame(year_list, teacher_n_summary, teacher_n_rfa) %>%
 
 ```{r}
 ggplot(teacher_n_compare, aes(x = year_list, y = n, color = source, group = source)) +
+  geom_point() +
+  geom_path() +
+  geom_text(aes(label = n), vjust = 0.8, nudge_x = .2)
+```
+
+There's still some gap.
+
+# Second try
+
+only select full-time classroom teachers, use FTE as percentages
+
+```{r}
+data_2014_2 <- data_2014_teacher %>% filter(`FT/PT` == "full time") 
+data_2015_2 <- data_2015_teacher %>% filter(`FT/PT` == "full time") 
+data_2016_2 <- data_2016_teacher %>% filter(`FT/PT` == "full time")
+data_2017_2 <- data_2017_teacher %>% filter(`FT/PT` == "full time")
+data_2018_2 <- data_2018_teacher %>% filter(`FT/PT` == "full time")
+data_2019_2 <- data_2019_teacher %>% filter(`FT/PT` == "full time")
+data_2020_2 <- data_2020_teacher %>% filter(`FT/PT` == "full time")
+```
+
+
+```{r}
+data_list_2 <- list(data_2014_2, data_2015_2, data_2016_2, data_2017_2, data_2018_2, data_2019_2, data_2020_2)
+temp <- lapply(data_list_2, clean_data)
+teacher_n_summary_2 <- sapply(temp, function(x){return(sum(x$FTE))})
+```
+
+```{r}
+teacher_n_compare_2 <- data.frame(year_list, teacher_n_summary_2, teacher_n_rfa) %>%
+  pivot_longer(cols = c("teacher_n_summary_2", "teacher_n_rfa"), names_to = "source", values_to = "n")
+```
+
+
+```{r}
+ggplot(teacher_n_compare_2, aes(x = year_list, y = n, color = source, group = source)) +
+  geom_point() +
+  geom_path() +
+  geom_text(aes(label = n), vjust = 0.8, nudge_x = .2)
+```
+
+Some uneven gaps.. 
+
+
+# Third try
+
+only select full-time classroom teachers, use FTE as percentages, remove teachers with less than 50 FTE
+
+```{r}
+data_2014_3 <- data_2014_2 %>% filter(as.numeric(`FTE%`) > 49) 
+data_2015_3 <- data_2015_2 %>% filter(as.numeric(`FTE%`) > 49)
+data_2016_3 <- data_2016_2 %>% filter(as.numeric(`FTE%`) > 49)
+data_2017_3 <- data_2017_2 %>% filter(as.numeric(`FTE%`) > 49)
+data_2018_3 <- data_2018_2 %>% filter(as.numeric(`FTE%`) > 49)
+data_2019_3 <- data_2019_2 %>% filter(as.numeric(`FTE%`) > 49)
+data_2020_3 <- data_2020_2 %>% filter(as.numeric(`FTE%`) > 49)
+```
+
+```{r}
+data_list_3 <- list(data_2014_3, data_2015_3, data_2016_3, data_2017_3, data_2018_3, data_2019_3, data_2020_3)
+temp <- lapply(data_list_3, clean_data)
+teacher_n_summary_3 <- sapply(temp, function(x){return(sum(x$FTE))})
+```
+
+```{r}
+teacher_n_compare_3 <- data.frame(year_list, teacher_n_summary_3, teacher_n_rfa) %>%
+  pivot_longer(cols = c("teacher_n_summary_3", "teacher_n_rfa"), names_to = "source", values_to = "n")
+```
+
+
+```{r}
+ggplot(teacher_n_compare_3, aes(x = year_list, y = n, color = source, group = source)) +
+  geom_point() +
+  geom_path() +
+  geom_text(aes(label = n), vjust = 0.8, nudge_x = .2)
+```
+
+Nope!
+
+# Fourth try
+
+only select classroom teachers, exclude special ed
+
+
+only select full-time classroom teachers, use FTE as percentages
+
+```{r}
+data_2014_4 <- data_2014_teacher %>% filter(!grepl("special ed",tolower(`PositionDescription`))) 
+data_2015_4 <- data_2015_teacher %>% filter(!grepl("special ed",tolower(`PositionDescription`))) 
+data_2016_4 <- data_2016_teacher %>% filter(!grepl("special ed",tolower(`Position Description 2017-`))) 
+data_2017_4 <- data_2017_teacher %>% filter(!grepl("special ed",tolower(`Position Description 2017-`))) 
+data_2018_4 <- data_2018_teacher %>% filter(!grepl("special ed",tolower(`Position Description 2017-`))) 
+data_2019_4 <- data_2019_teacher %>% filter(!grepl("special ed",tolower(`Position Description 2017-`))) 
+data_2020_4 <- data_2020_teacher %>% filter(!grepl("special ed",tolower(`Position Description 2017-`))) 
+```
+
+
+```{r}
+data_list_4 <- list(data_2014_4, data_2015_4, data_2016_4, data_2017_4, data_2018_4, data_2019_4, data_2020_4)
+temp <- lapply(data_list_4, clean_data)
+teacher_n_summary_4 <- sapply(temp, function(x){return(sum(x$FTE))})
+```
+
+```{r}
+teacher_n_compare_4 <- data.frame(year_list, teacher_n_summary_4, teacher_n_rfa) %>%
+  pivot_longer(cols = c("teacher_n_summary_4", "teacher_n_rfa"), names_to = "source", values_to = "n")
+```
+
+
+```{r}
+ggplot(teacher_n_compare_4, aes(x = year_list, y = n, color = source, group = source)) +
+  geom_point() +
+  geom_path() +
+  geom_text(aes(label = n), vjust = 0.8, nudge_x = .2)
+```
+
+not right
+
+# Fifth try
+
+only count classroom teachers in charter school/school district, and use their FTE as percentages
+
+
+```{r}
+data_2014_5 <- data_2014_teacher %>% filter(LEATypeDescription %in% c("School District", "Charter School")) 
+data_2015_5 <- data_2015_teacher %>% filter(LEATypeDescription %in% c("School District", "Charter School")) 
+data_2016_5 <- data_2016_teacher %>% filter(LEATypeDescription %in% c("School District", "Charter School"))
+data_2017_5 <- data_2017_teacher %>% filter(LEATypeDescription %in% c("School District", "Charter School"))
+data_2018_5 <- data_2018_teacher %>% filter(LEATypeDescription %in% c("School District", "Charter School"))
+data_2019_5 <- data_2019_teacher %>% filter(LEATypeDescription %in% c("School District", "Charter School"))
+data_2020_5 <- data_2020_teacher %>% filter(LEATypeDescription %in% c("School District", "Charter School"))
+```
+
+
+```{r}
+data_list_5 <- list(data_2014_5, data_2015_5, data_2016_5, data_2017_5, data_2018_5, data_2019_5, data_2020_5)
+temp <- lapply(data_list_5, clean_data)
+teacher_n_summary_5 <- sapply(temp, function(x){return(sum(x$FTE))})
+```
+
+```{r}
+teacher_n_compare_5 <- data.frame(year_list, teacher_n_summary_5, teacher_n_rfa) %>%
+  pivot_longer(cols = c("teacher_n_summary_5", "teacher_n_rfa"), names_to = "source", values_to = "n")
+```
+
+
+```{r}
+ggplot(teacher_n_compare_5, aes(x = year_list, y = n, color = source, group = source)) +
+  geom_point() +
+  geom_path() +
+  geom_text(aes(label = n), vjust = 0.8, nudge_x = .2)
+```
+
+numbers too small
+
+# Sixth try
+
+
+only count teachers in charter school/school district, and use their FTE as percentages
+
+(include non-classroom teachers)
+
+
+```{r}
+data_2014_6 <- data_2014 %>% filter(LEATypeDescription %in% c("School District", "Charter School")) 
+data_2015_6 <- data_2015 %>% filter(LEATypeDescription %in% c("School District", "Charter School")) 
+data_2016_6 <- data_2016 %>% filter(LEATypeDescription %in% c("School District", "Charter School"))
+data_2017_6 <- data_2017 %>% filter(LEATypeDescription %in% c("School District", "Charter School"))
+data_2018_6 <- data_2018 %>% filter(LEATypeDescription %in% c("School District", "Charter School"))
+data_2019_6 <- data_2019 %>% filter(LEATypeDescription %in% c("School District", "Charter School"))
+data_2020_6 <- data_2020 %>% filter(LEATypeDescription %in% c("School District", "Charter School"))
+```
+
+
+```{r}
+data_list_6 <- list(data_2014_6, data_2015_6, data_2016_6, data_2017_6, data_2018_6, data_2019_6, data_2020_6)
+temp <- lapply(data_list_6, clean_data)
+teacher_n_summary_6 <- sapply(temp, function(x){return(sum(x$FTE))})
+```
+
+```{r}
+teacher_n_compare_6 <- data.frame(year_list, teacher_n_summary_6, teacher_n_rfa) %>%
+  pivot_longer(cols = c("teacher_n_summary_6", "teacher_n_rfa"), names_to = "source", values_to = "n")
+```
+
+
+```{r}
+ggplot(teacher_n_compare_6, aes(x = year_list, y = n, color = source, group = source)) +
+  geom_point() +
+  geom_path() +
+  geom_text(aes(label = n), vjust = 0.8, nudge_x = .2)
+```
+
+
+
+# Some exploration
+
+
+```{r}
+school_2019_us <- data_2019 %>%
+  group_by(LEAName, AUN,  School, SchNum) %>%
+  
+  #filter(!PublicID %in% fte_outlier_list) %>%
+  #filter(`FT/PT` == "full time") %>%
+  filter(`Category Description 2017-` == "Classroom Teachers") %>%
+  #filter(EDFactsDescription != "KGTCH") %>%
+  #filter(JobClass != "TPE" | is.na(JobClass) == T) %>% 
+  filter(Status == "Active") %>%
+  filter(!SchNum %in% c("9999", "Off-Site")) %>%
+  summarize(n = sum(as.numeric(`FTE%`)/100)) %>%
+  pull(School)
+```
+
+```{r}
+Teachers_by_race_2019 <- read_excel("C:/Users/iris_/OneDrive - Stanford/Stanford/EDS seminar proj/Teachers-by-race_2019-20.xlsx")
+school_2019_rfa <- Teachers_by_race_2019 %>% pull(`School Name`)
+```
+
+```{r}
+setdiff(school_2019_us,school_2019_rfa)
+setdiff(school_2019_rfa, school_2019_us)
+```
+`
+
+
+
+
+```{r}
+data_2017_teacher %>%
+  #filter(`FT/PT` == "full time") %>%
+  #filter(!PublicID %in% fte_outlier_list) %>%
+  #filter(`CategoryDescription` == "Classroom Teachers") %>%
+  filter(Status == "Active") %>%
+  #filter(`EDF Category` != "KGTCH") %>%
+  #filter(JobClass %in% c("PE","TPE","SP") | is.na(JobClass) == T) %>%
+  filter(SchNum != "9999") %>%
+  summarize(n = sum(as.numeric(`FTE%`)/100))
+```
+
+```{r}
+data_2014 %>%
+  group_by(PublicID) %>%
+  summarize(fte = sum(as.numeric(`FTE%`)/100)) %>%
+  arrange(desc(fte)) %>%
+  filter(fte > 1)
+```
+
+
+# Seventh try
+
+only select active classroom teachers, and use their FTE as percentages
+
+```{r}
+data_2014_7 <- data_2014_teacher %>% filter(Status == "Active") 
+data_2015_7 <- data_2015_teacher %>% filter(Status == "Active") 
+data_2016_7 <- data_2016_teacher %>% filter(Status == "Active")
+data_2017_7 <- data_2017_teacher %>% filter(Status == "Active")
+data_2018_7 <- data_2018_teacher %>% filter(Status == "Active")
+data_2019_7 <- data_2019_teacher %>% filter(Status == "Active")
+data_2020_7 <- data_2020_teacher %>% filter(Status == "Active")
+```
+
+
+```{r}
+data_list_7 <- list(data_2014_7, data_2015_7, data_2016_7, data_2017_7, data_2018_7, data_2019_7, data_2020_7)
+temp <- lapply(data_list_7, clean_data)
+teacher_n_summary_7 <- sapply(temp, function(x){return(sum(x$FTE))})
+```
+
+```{r}
+teacher_n_compare_7 <- data.frame(year_list, teacher_n_summary_7, teacher_n_rfa) %>%
+  pivot_longer(cols = c("teacher_n_summary_7", "teacher_n_rfa"), names_to = "source", values_to = "n")
+```
+
+
+```{r}
+ggplot(teacher_n_compare_7, aes(x = year_list, y = n, color = source, group = source)) +
+  geom_point() +
+  geom_path() +
+  geom_text(aes(label = n), vjust = 0.8, nudge_x = .2)
+```
+
+
+# Eighth try
+
+only select active classroom teachers (exclude schnum = "9999" off-site), and use their FTE as percentages
+
+```{r}
+data_2014_8 <- data_2014_7 %>% filter(!SchNum %in% c("9999", "Off-Site")) 
+data_2015_8 <- data_2015_7 %>% filter(!SchNum %in% c("9999", "Off-Site"))  
+data_2016_8 <- data_2016_7 %>% filter(!SchNum %in% c("9999", "Off-Site")) 
+data_2017_8 <- data_2017_7 %>% filter(!SchNum %in% c("9999", "Off-Site")) 
+data_2018_8 <- data_2018_7 %>% filter(!SchNum %in% c("9999", "Off-Site"))
+data_2019_8 <- data_2019_7 %>% filter(!SchNum %in% c("9999", "Off-Site")) 
+data_2020_8 <- data_2020_7 %>% filter(!SchNum %in% c("9999", "Off-Site")) 
+```
+
+
+```{r}
+data_list_8 <- list(data_2014_8, data_2015_8, data_2016_8, data_2017_8, data_2018_8, data_2019_8, data_2020_8)
+temp <- lapply(data_list_8, clean_data)
+teacher_n_summary_8 <- sapply(temp, function(x){return(sum(x$FTE))})
+```
+
+```{r}
+teacher_n_compare_8 <- data.frame(year_list, teacher_n_summary_8, teacher_n_rfa) %>%
+  pivot_longer(cols = c("teacher_n_summary_8", "teacher_n_rfa"), names_to = "source", values_to = "n")
+```
+
+
+```{r}
+ggplot(teacher_n_compare_8, aes(x = year_list, y = n, color = source, group = source)) +
+  geom_point() +
+  geom_path() +
+  geom_text(aes(label = n), vjust = 0.8, nudge_x = .2)
+```
+
+
+# Nineth try
+
+Same as eighth, but remove PublicID == "1880041809" or "-1629249266"
+
+```{r}
+data_2014_9 <- data_2014_8 %>% filter(!PublicID %in% c(1880041809,-1629249266))
+data_2015_9 <- data_2015_8 %>% filter(!PublicID %in% c(1880041809,-1629249266))
+data_2016_9 <- data_2016_8 %>% filter(!PublicID %in% c(1880041809,-1629249266))
+data_2017_9 <- data_2017_8 %>% filter(!PublicID %in% c(1880041809,-1629249266))
+data_2018_9 <- data_2018_8 %>% filter(!PublicID %in% c(1880041809,-1629249266))
+data_2019_9 <- data_2019_8 %>% filter(!PublicID %in% c(1880041809,-1629249266))
+data_2020_9 <- data_2020_8 %>% filter(!PublicID %in% c(1880041809,-1629249266))
+```
+
+
+```{r}
+data_list_9 <- list(data_2014_9, data_2015_9, data_2016_9, data_2017_9, data_2018_9, data_2019_9, data_2020_9)
+temp <- lapply(data_list_9, clean_data)
+teacher_n_summary_9 <- sapply(temp, function(x){return(sum(x$FTE))})
+```
+
+```{r}
+teacher_n_compare_9 <- data.frame(year_list, teacher_n_summary_9, teacher_n_rfa) %>%
+  pivot_longer(cols = c("teacher_n_summary_9", "teacher_n_rfa"), names_to = "source", values_to = "n")
+```
+
+
+```{r}
+ggplot(teacher_n_compare_9, aes(x = year_list, y = n, color = source, group = source)) +
   geom_point() +
   geom_path() +
   geom_text(aes(label = n), vjust = 0.8, nudge_x = .2)
