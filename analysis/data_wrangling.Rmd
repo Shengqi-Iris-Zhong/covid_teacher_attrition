@@ -3,6 +3,8 @@ title: "Data Wrangling"
 author: "Iris Zhong"
 date: "12/14/2021"
 output: html_document
+editor_options: 
+  chunk_output_type: inline
 ---
 
 ```{r setup, include=FALSE}
@@ -13,7 +15,7 @@ library(readxl)
 library(tidyverse)
 ```
 
-```{r import data}
+```{r import data, report = F, output = F}
 data_2020 <- read_excel(here("data/xlsx", "2020-21 Professional Personnel Individual Staff Report updated.xlsx")) %>% 
   mutate(PublicID = as.numeric(PublicID)) %>% 
   rename(YearsInEd = YearsInED) %>%
@@ -33,69 +35,16 @@ data_2019 <- read_excel(here("data/xlsx", "2019-20 Professional Personnel Indivi
 
 ```
 
-# Exploration (don't run)
-
-
-
-```{r use name as ID, include = F}
-data_2014_clean <- data_2014 %>%
-  unite("name", c(`First Name`, `MiddleName`, `Last Name`, Suffix), sep=" ", 
-        remove = FALSE, na.rm = TRUE) %>%
-  mutate(name = tolower(name)) %>%
-  mutate(person_ID = group_indices(., name))
-```
-
-
-
-Doesn't work well 
-
-```{r include = F}
-data_2014_clean %>%
-  group_by(person_ID, PublicID) %>%
-  summarize(n = n()) %>%
-  filter(n != 1)
-```
-
-
-
-```{r include= F}
-data_2014_clean %>%
-  group_by(person_ID) %>%
-  summarize(n = n()) %>%
-  filter(n != 1)
-```
-
-
-```{r include = F}
-data_2014_clean %>%
-  filter(person_ID ==875)
-```
-
-Only 2020-21 uses different PublicID. 
-
-
-```{r include = F}
-data_2014 %>%
-  inner_join(data_2015, by = c("PublicID")) %>%
-  filter(Status.y != "Active")
-```
 
 # Clean 2014-2020 data
 
 Select year and public ID
 
-```{r select func, include = F}
-select_var <- function(data) {
-  
-  data <- data %>%
-    dplyr::select(SY, PublicID)
-  
-}
-```
-
-
-```{r apply select func}
+```{r select data}
 data_list <- list(data_2014, data_2015, data_2016, data_2017, data_2018, data_2019, data_2020)
+
+# Remove bad rows: 
+data_list <- map(data_list, function(x){x<-x %>% filter(!SchNum %in% c("9999", "Off-Site")) %>% filter(!PublicID %in% c(1880041809, -1629249266))})
 
 temp <- lapply(data_list, function(x){x <- x %>% dplyr::select(SY, PublicID); return (x)})
 
@@ -113,8 +62,6 @@ data_2018_short <- distinct(data_2018_short, .keep_all = T)
 data_2019_short <- distinct(data_2019_short, .keep_all = T)
 data_2020_short <- distinct(data_2020_short, .keep_all = T)
 ```
-
-Take a look at ID: 180041809 (a lot of rows)
 
 
 ```{r join datasets}
@@ -233,8 +180,8 @@ exit_rate_year_exp_grouped <- exit_rate_year_exp %>%
   mutate(is_2020 = ifelse(year == "2020-21", 1, 0)) %>%
   group_by(is_2020, YearsInEd) %>%
   summarize(exit_rate_by_exp = mean(exit_rate_by_exp),
-            exit_n = mean(exit_n_by_exp)) %>%
-  filter(YearsInEd <= 40)
+            exit_n = mean(exit_n_by_exp))# %>%
+ # filter(YearsInEd <= 40)
 ```
 
 ```{r}
@@ -245,12 +192,58 @@ ggplot(exit_rate_year_exp_grouped, aes(x = YearsInEd, y = exit_n, color = as.fac
 
 
 ```{r}
-ggplot(exit_rate_year_exp_grouped, aes(x = YearsInEd, y = exit_rate_by_exp, color = as.factor(is_2020))) +
+exit_rate_year_exp_grouped %>% filter(YearsInEd <= 40) %>%
+ggplot(aes(x = YearsInEd, y = exit_rate_by_exp, color = as.factor(is_2020))) +
   geom_point() +
   geom_line()
 ```
 
 
+# Difference for the above plot
+
+```{r}
+exit_rate_year_exp_diff <- exit_rate_year_exp_grouped %>%
+  group_by(YearsInEd) %>%
+  summarize(diff_rate = exit_rate_by_exp - lag(exit_rate_by_exp),
+         diff_n = exit_n - lag(exit_n)) %>%
+  filter(is.na(diff_n) == F)
+```
+
+
+```{r}
+ggplot(exit_rate_year_exp_diff, aes(x = YearsInEd, y = diff_rate)) +
+  geom_point() +
+  geom_line() +
+  labs(title = "Difference between exit rate before 2020 and in 2020, by years of exp in education")
+```
+
+```{r}
+ggplot(exit_rate_year_exp_diff[1:40,], aes(x = YearsInEd, y = diff_rate)) +
+  geom_point() +
+  geom_line() +
+  labs(title = "Difference between exit rate before 2020 and in 2020, by years of exp in education") +
+  geom_hline(yintercept = 0, color = "coral", linetype = "dashed")
+```
+
+
+
+
+```{r}
+ggplot(exit_rate_year_exp_diff, aes(x = YearsInEd, y = diff_n)) +
+  geom_point() +
+  geom_line() +
+  labs(title = "Difference between exit number before 2020 and in 2020, by years of exp in education") +
+  geom_hline(yintercept = 0, color = "coral", linetype = "dashed")
+```
+
+
+```{r}
+ggplot(exit_rate_year_exp_diff[40:57,], aes(x = YearsInEd, y = diff_n)) +
+  geom_point() +
+  geom_line() +
+  labs(title = "Difference between exit number before 2020 and in 2020, by years of exp in education") +
+  geom_hline(yintercept = 0, color = "coral", linetype = "dashed")
+```
 
 # Number of teachers per school
 
@@ -426,5 +419,74 @@ teacher_n_compare <- data.frame(year_list, teacher_n_summary, teacher_n_rfa) %>%
 ggplot(teacher_n_compare, aes(x = year_list, y = n, color = source, group = source)) +
   geom_point() +
   geom_path()
+```
+
+# Years of education each year
+
+```{r num of teacher per year of exp}
+yr_exp_n <- data.frame(SY = character(), YearsInEd = double(), teacher_n = double())
+for (i in 1:length(data_list)) {
+  data <- data_list[[i]]
+  data <- distinct(data, PublicID, .keep_all = T)
+  data <- data %>% 
+    mutate(YearsInEd = as.numeric(YearsInEd)) %>%
+    group_by(SY, YearsInEd) %>%
+    summarize(teacher_n = n())
+  yr_exp_n <- rbind(yr_exp_n, data)
+}
+```
+
+```{r}
+yr_exp_empty <- data.frame(matrix(ncol = 3, nrow = 74*7))
+temp <- c("SY", "YearsInEd", "teacher_n")
+colnames(yr_exp_empty) <- temp
+
+yr_exp_empty$SY <- rep(c("2014-15","2015-16","2016-17","2017-18","2018-19","2019-20","2020-21"), each = 74)
+yr_exp_empty$YearsInEd <- rep(1:74,7)
+yr_exp_empty$teacher_n <- rep(0,74*7)
+
+yr_exp_n <- full_join(yr_exp_n, yr_exp_empty,by=c("SY","YearsInEd")) %>%
+  mutate(teacher_n = ifelse(is.na(teacher_n.x) == T, 0, teacher_n.x)) %>%
+  select(SY, YearsInEd, teacher_n)
+           
+```
+
+
+
+```{r}
+yr_exp_n %>%
+  mutate(is_2020 = ifelse(SY == "2020-21", 1, 0)) %>%
+  group_by(is_2020, YearsInEd) %>%
+  summarize(teacher_n = mean(teacher_n)) %>%
+  ggplot(aes(x = YearsInEd, y = teacher_n, color = as.factor(is_2020))) +
+  geom_point() +
+  geom_line() +
+  scale_color_discrete(name = "is 2020?") +
+  scale_x_continuous(breaks = seq(0, 74, by = 5)) +
+  labs(title = "Years of experience in education ~ Num of people (2020 vs. pre-2020)" )
+```
+
+```{r}
+yr_exp_n %>%
+  mutate(is_2020 = ifelse(SY == "2020-21", 1, 0)) %>%
+  group_by(is_2020, YearsInEd) %>%
+  summarize(teacher_n = mean(teacher_n)) %>%
+  ungroup() %>%
+  group_by(YearsInEd) %>%
+  mutate(Diff = teacher_n - lag(teacher_n)) %>%
+  filter(is.na(Diff) == F) %>%
+  ggplot(aes(x = YearsInEd, y = Diff)) +
+  geom_point() +
+  geom_line() +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "coral") +
+  labs(title = "Number of people ~ Years of Experience difference (2020 vs. pre-2020)")
+```
+
+```{r}
+yr_exp_n %>%
+  mutate(is_2020 = ifelse(SY == "2020-21", 1, 0)) %>%
+  group_by(is_2020, YearsInEd) %>%
+  summarize(teacher_n = mean(teacher_n))
+  
 ```
 

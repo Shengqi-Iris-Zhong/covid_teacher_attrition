@@ -1,0 +1,102 @@
+---
+title: "Joining datasets"
+author: "Iris Zhong"
+date: "3/3/2022"
+output: html_document
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(here)
+library(readxl)
+library(tidyverse)
+```
+
+# Attrition + RFA
+
+```{r import data, report = F}
+data_2020 <- read_excel(here("data/xlsx", "2020-21 Professional Personnel Individual Staff Report updated.xlsx")) %>% 
+  mutate(PublicID = as.numeric(PublicID)) %>% 
+  rename(YearsInEd = YearsInED) %>%
+  mutate(AnnualSalary = ifelse(AnnualSalary == "Salary Excluded for Fictitious", NA, AnnualSalary))
+
+data_2014 <- read_excel(here("data/xlsx", "2014-15 Professional Personnel Individual Staff Report.xlsx"))
+
+data_2015 <- read_excel(here("data/xlsx", "2015-16 Professional Personnel Individual Staff Report.xlsx"))
+
+data_2016 <- read_excel(here("data/xlsx", "2016-17 Professional Personnel Individual Staff Report.xlsx"))
+
+data_2017 <- read_excel(here("data/xlsx", "2017-18 Professional Personnel Individual Staff Report.xlsx"))
+
+data_2018 <- read_excel(here("data/xlsx", "2018-19 Professional Personnel Individual Staff Report.xlsx")) %>% rename(YearsInEd = YearsInED)
+
+data_2019 <- read_excel(here("data/xlsx", "2019-20 Professional Personnel Individual Staff Report.xlsx")) %>% rename(YearsInEd = YearsInED)
+
+``` 
+
+
+```{r}
+race_19 <- read_excel("C:/Users/iris_/OneDrive - Stanford/Stanford/EDS seminar proj/Teachers-by-race_2019-20.xlsx")
+```
+
+```{r}
+schoolnum_2019_us <- data_2019 %>%
+  group_by(AUN, LEAName, SchNum, School) %>%
+  filter(!SchNum %in% c("9999", "Off-Site", "0000")) %>%
+  summarize(n = sum(as.numeric(`FTE%`)/100)) %>%
+  select(AUN, LEAName, SchNum, School)
+```
+
+
+```{r}
+schoolnum_2019_rfa <- race_19 %>% filter(`School Number` != "0000") %>%
+  select(`School Number`, `School Name`)
+```
+
+```{r}
+diff_2019 <- schoolnum_2019_us %>%
+  full_join(schoolnum_2019_rfa, by = c("SchNum" = "School Number"))
+```
+
+
+```{r}
+diff_2019 <- diff_2019 %>%
+  mutate(equivalent_yes = ifelse(School == `School Name`, 1, 0))
+```
+
+```{r}
+diff_2019 %>% filter(is.na(`School Name`) == T)
+```
+
+
+```{r}
+schoolname_2019_us <- data_2019 %>%
+  group_by(AUN, LEAName, SchNum, School) %>%
+  filter(!SchNum %in% c("9999", "Off-Site")) %>%
+  summarize(n = sum(as.numeric(`FTE%`)/100)) %>%
+  select(AUN, LEAName, SchNum, School)
+```
+
+
+```{r}
+schoolname_2019_rfa <- race_19 %>%
+  select(`School Number`, `School Name`)
+```
+
+```{r}
+diff_2019 <- schoolnum_2019_us %>%
+  full_join(schoolnum_2019_rfa, by = c("School" = "School Name"))
+```
+
+
+```{r}
+library(furniture)
+```
+
+```{r}
+table1(data_2019, as.numeric(`AnnualSalary`), `JobClass`, as.numeric(`FT/PT`))
+```
+
+

@@ -3,6 +3,8 @@ title: "Validation with RFA"
 author: "Iris Zhong"
 date: "1/30/2022"
 output: html_document
+editor_options: 
+  chunk_output_type: inline
 ---
 
 ```{r setup, include=FALSE}

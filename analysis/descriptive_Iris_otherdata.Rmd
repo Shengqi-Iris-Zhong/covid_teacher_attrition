@@ -1,0 +1,229 @@
+---
+title: "Auxiliary data descriptive analysis"
+author: "Iris Zhong"
+date: "2/16/2022"
+output:
+  pdf_document: default
+  html_document: default
+editor_options:
+  chunk_output_type: inline
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readr)
+library(tidyverse)
+library(here)
+library(furniture)
+library(readxl)
+```
+
+# 2020 Election
+
+```{r}
+countypres_2000_2020 <- read_csv(here("data","countypres_2000-2020.csv"))
+head(countypres_2000_2020)
+```
+
+```{r}
+election_data <- countypres_2000_2020 %>%
+  filter(state_po == "PA" & year == 2020) %>%
+  mutate(perc_vote = candidatevotes/totalvotes) %>%
+  filter(party %in% c("DEMOCRAT", "REPUBLICAN"))
+```
+
+```{r}
+win_candidate <- election_data %>%
+  group_by(county_fips) %>%
+  filter(candidatevotes == max(candidatevotes))
+```
+
+```{r}
+win_candidate %>%
+  group_by(candidate) %>%
+  summarize(county_n = n()) %>%
+  knitr::kable()
+  
+```
+
+```{r}
+election_data <- election_data %>%
+  group_by(county_fips) %>%
+  mutate(win_yes = ifelse(candidatevotes == max(candidatevotes), 1, 0)) %>%
+  select(county_name, candidate, party, perc_vote, win_yes)# %>%
+  #mutate(win_democrat = ifelse())
+```
+
+
+
+
+```{r}
+ggplot(election_data, aes(x = party, y = perc_vote, fill = party)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values=c('#0000FF','#FF0000')) +
+  facet_wrap(~county_name, ncol = 6) 
+
+ggsave(file="election_result.png", width=6, height=10, dpi=300)
+```
+
+# percentage from Shenghan
+
+```{r}
+percentage_data <- read_csv(here("data","relative_rate.csv"))
+```
+
+```{r}
+percentage_data %>%
+  group_by(Jurisdiction) %>%
+  summarize(mean = mean(Percent)) %>%
+  arrange(mean) 
+```
+
+```{r}
+county_over_3 <- percentage_data %>%
+  group_by(Jurisdiction) %>%
+  mutate(mean = mean(Percent),
+         center_pct = Percent - mean) %>%
+  arrange(mean) %>%
+  filter(mean > 3)
+```
+
+
+
+```{r}
+ggplot(county_over_3, aes(x=Jurisdiction, y=center_pct)) + 
+  geom_boxplot() +
+  labs(title = "County with mean percentage > 3")
+```
+
+```{r}
+county_over_15 <- percentage_data %>%
+  group_by(Jurisdiction) %>%
+  mutate(mean = mean(Percent),
+         center_pct = Percent - mean) %>%
+  arrange(mean) %>%
+  filter(mean > 1.5 & mean < 3)
+```
+
+```{r}
+ggplot(county_over_15, aes(x=Jurisdiction, y=center_pct)) + 
+  geom_boxplot() +
+  labs(title = "County with 1.5 < mean percentage < 3") +
+  ylim(-2,4)
+```
+
+
+```{r}
+county_over_1 <- percentage_data %>%
+  group_by(Jurisdiction) %>%
+  mutate(mean = mean(Percent),
+         center_pct = Percent - mean) %>%
+  arrange(mean) %>%
+  filter(mean > 1 & mean < 1.5)
+```
+
+```{r}
+ggplot(county_over_1, aes(x=Jurisdiction, y=center_pct)) + 
+  geom_boxplot() +
+  labs(title = "County with 1 < mean percentage < 1.5") +
+  ylim(-2,4)
+```
+
+
+```{r}
+county_over_05 <- percentage_data %>%
+  group_by(Jurisdiction) %>%
+  mutate(mean = mean(Percent),
+         center_pct = Percent - mean) %>%
+  arrange(mean) %>%
+  filter(mean > 0.5 & mean < 1)
+```
+
+
+
+```{r}
+ggplot(county_over_05, aes(x=Jurisdiction, y=center_pct)) + 
+  geom_boxplot() +
+  labs(title = "County with 0.5 < mean percentage < 1") +
+  ylim(-2,4)
+```
+
+
+```{r}
+county_less_05 <- percentage_data %>%
+  group_by(Jurisdiction) %>%
+  mutate(mean = mean(Percent),
+         center_pct = Percent - mean) %>%
+  arrange(mean) %>%
+  filter(mean < 0.5)
+```
+
+```{r}
+ggplot(county_less_05, aes(x=Jurisdiction, y=center_pct)) + 
+  geom_boxplot() +
+  labs(title = "County with mean percentage < 0.5") +
+  ylim(-2,4)
+```
+
+# Descriptive statistics for teacher attrition
+
+```{r}
+data_2020 <- read_excel(here("data/xlsx", "2020-21 Professional Personnel Individual Staff Report updated.xlsx")) %>% 
+  mutate(PublicID = as.numeric(PublicID)) %>% 
+  rename(YearsInEd = YearsInED) %>%
+  mutate(AnnualSalary = ifelse(AnnualSalary == "Salary Excluded for Fictitious", NA, AnnualSalary))
+```
+
+```{r}
+data_2020 <- data_2020 %>%
+  filter(!PublicID %in% c(1880041809,-1629249266)) %>%
+  filter(!SchNum %in% c("9999", "Off-Site"))
+```
+
+
+
+Things to summarize: Gender, AnnualSalary, DegreeDescription, YearsInEd, YearsInLEA, Status, LEAName, IU, FT/PT, JobClass, Position Description 2017-, Category Description 2017-, FTE%
+
+
+```{r change name}
+data_2020 <- data_2020 %>%
+  rename(FTPT = `FT/PT`, position = `Position Description 2017-`, 
+         category = `Category Description 2017-`, fte = `FTE%`)
+
+
+```
+
+```{r}
+data_2020 <- data_2020 %>%
+  mutate(YearsInEd = as.numeric(YearsInEd),
+         YearsInLEA = as.numeric(YearsInLEA),
+         fte = as.numeric(fte))
+```
+
+```{r}
+table1(data_2020, Gender, AnnualSalary, DegreeDescription, YearsInEd, YearsInLEA, Status, FTPT, output = "latex", na.rm = F)
+```
+
+
+```{r}
+table1(data_2020, JobClass, position, category, fte, output = "latex", na.rm = F)
+```
+
+# EDGE
+
+```{r}
+library(readr)
+edge <- read_csv("C:/Users/iris_/OneDrive - Stanford/Stanford/EDS seminar proj/EDGE_SIDE1519_PUBSCHS1819/EDGE_SIDE1519_PUBSCHS1819.csv")
+```
+
+```{r}
+edge_pa <- edge %>%
+  filter(str_detect(NCESSCH, "^42"))
+head(edge_pa)
+```
+
+```{r}
+mosaic::favstats(edge$IPR_EST)
+mosaic::favstats(edge$IPR_SE)
+```
+
