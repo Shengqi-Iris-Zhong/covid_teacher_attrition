@@ -1,0 +1,164 @@
+---
+title: "Years of Experience Correction"
+author: "Iris Zhong"
+date: "3/15/2022"
+output: html_document
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(readxl)
+library(here)
+library(matrixStats)
+```
+
+```{r import data, report = F, output = F}
+data_2020 <- read_excel(here("data/xlsx", "2020-21 Professional Personnel Individual Staff Report updated.xlsx")) %>% 
+  mutate(PublicID = as.numeric(PublicID)) %>% 
+  rename(YearsInEd = YearsInED) %>%
+  mutate(AnnualSalary = ifelse(AnnualSalary == "Salary Excluded for Fictitious", NA, AnnualSalary))
+
+data_2013 <- read_excel(here("data/xlsx", "2013-14 Professional Personnel Individual Staff Report.xlsx"))
+
+data_2014 <- read_excel(here("data/xlsx", "2014-15 Professional Personnel Individual Staff Report.xlsx"))
+
+data_2015 <- read_excel(here("data/xlsx", "2015-16 Professional Personnel Individual Staff Report.xlsx"))
+
+data_2016 <- read_excel(here("data/xlsx", "2016-17 Professional Personnel Individual Staff Report.xlsx"))
+
+data_2017 <- read_excel(here("data/xlsx", "2017-18 Professional Personnel Individual Staff Report.xlsx"))
+
+data_2018 <- read_excel(here("data/xlsx", "2018-19 Professional Personnel Individual Staff Report.xlsx")) %>% rename(YearsInEd = YearsInED)
+
+data_2019 <- read_excel(here("data/xlsx", "2019-20 Professional Personnel Individual Staff Report.xlsx")) %>% rename(YearsInEd = YearsInED)
+```
+
+```{r}
+data_list <- list(data_2013, data_2014, data_2015, data_2016, data_2017, data_2018, data_2019, data_2020)
+```
+
+```{r}
+data_list <- map(data_list, function(x){x<-x %>% filter(!SchNum %in% c("9999", "Off-Site")) %>% filter(!PublicID %in% c(1880041809, -1629249266))})
+
+temp <- lapply(data_list, function(x){x <- x %>% dplyr::select(SY, PublicID, YearsInEd) %>% mutate(YearsInEd = as.numeric(YearsInEd)); return (x)})
+
+names(temp) <- c("data_2013_short", "data_2014_short", "data_2015_short", "data_2016_short", "data_2017_short", "data_2018_short","data_2019_short", "data_2020_short")
+
+list2env(temp, envir = .GlobalEnv)
+```
+
+
+
+
+```{r}
+# If the same person has different years of exp: choose the max
+# First, check how many cases exist
+data_2013_short %>%
+  group_by(PublicID) %>%
+  mutate(YearsInEd_1 = max(YearsInEd)) %>%
+  mutate(diff = YearsInEd_1 - YearsInEd) %>%
+  filter(diff != 0)
+```
+
+2013: 315
+2014: 379
+2015: 324
+2016: 353
+2017: 332
+2018: 255
+2019: 258
+2020: 697
+
+
+```{r}
+choose_max <- function(data) {
+  data <- data %>%
+    group_by(PublicID) %>%
+    mutate(YearsInEd = max(YearsInEd)) 
+  data <- distinct(data, .keep_all = T)
+  return(data)
+}
+```
+
+
+```{r}
+data_list_short <- list(data_2013_short, data_2014_short, data_2015_short, data_2016_short, data_2017_short, data_2018_short, data_2019_short, data_2020_short)
+```
+
+```{r}
+data_list_short <- map(data_list_short, choose_max) 
+names(data_list_short) <- c("data_2013_short","data_2014_short", "data_2015_short", "data_2016_short", "data_2017_short", "data_2018_short","data_2019_short", "data_2020_short")
+
+list2env(data_list_short, envir = .GlobalEnv)
+```
+
+```{r}
+data_13_20_short <- data_2013_short %>%
+  full_join(data_2014_short, by = "PublicID") %>%
+  full_join(data_2015_short, by = "PublicID") %>%
+  full_join(data_2016_short, by = "PublicID") %>%
+  full_join(data_2017_short, by = "PublicID") %>%
+  full_join(data_2018_short, by = "PublicID") %>%
+  full_join(data_2019_short, by = "PublicID") %>%
+  full_join(data_2020_short, by = "PublicID")
+```
+
+```{r}
+data_13_20_short <- data_13_20_short %>%
+  mutate(Y13 = YearsInEd.x, Y14 = YearsInEd.y, Y15 = YearsInEd.x.x,
+         Y16 = YearsInEd.y.y, Y17 = YearsInEd.x.x.x, Y18 = YearsInEd.y.y.y, 
+         Y19 = YearsInEd.x.x.x.x, Y20 = YearsInEd.y.y.y.y) %>%
+  select(PublicID, Y13:Y20)
+```
+
+There are 199,729 professionals from 2013 to 2020. 
+
+How many professionals have no problems in yrs of exp? (i.e. when not NA, increment by 1)
+
+```{r}
+diff_data <- data_13_20_short %>%
+  mutate(diff14 = Y14 - Y13,
+         diff15 = Y15 - Y14,
+         diff16 = Y16 - Y15,
+         diff17 = Y17 - Y16,
+         diff18 = Y18 - Y17,
+         diff19 = Y19 - Y18,
+         diff20 = Y20 - Y19) %>%
+  filter_at(vars(diff14:diff20),any_vars(!is.na(.))) # remove people that were only present in Y13
+
+```
+
+```{r}
+# Find mean and sd for the differences. If mean = 1 and sd = 0 (or sd NA), it has 
+diff_data$mean <- rowMeans(diff_data[ , 10:16], na.rm=TRUE)
+diff_data <- diff_data %>%
+  rowwise() %>%
+  mutate(sd = sd(c(diff14, diff15, diff16, diff17, diff18, diff19, diff20), na.rm = T))
+diff_data %>%
+  filter(mean == 1 & (sd == 0 | is.na(sd) == T))
+```
+
+
+Out of 181185 cases, 119225 have no issues at all. 
+
+```{r}
+diff_data$problem_n <- rowSums(diff_data[ , 10:16] != 1, na.rm = T)
+```
+
+```{r}
+diff_data %>% filter(problem_n == 0)
+```
+
+
+```{r}
+diff_data %>% filter(problem_n == 1)
+```
+
+```{r}
+diff_data %>% filter(problem_n > 1)
+```
+
+
