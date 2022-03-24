@@ -15,7 +15,6 @@ library(readxl)
 library(tidyverse)
 ```
 
-test git
 
 ```{r import data}
 data_2020 <- read_excel(here("data/xlsx", "2020-21 Professional Personnel Individual Staff Report updated.xlsx")) %>% 
