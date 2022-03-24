@@ -1,0 +1,4304 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Years of Experience Correction},
+  pdfauthor={Iris Zhong},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{Years of Experience Correction}
+\author{Iris Zhong}
+\date{3/15/2022}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_}\DecValTok{2020}\NormalTok{ \textless{}{-}}\StringTok{ }\KeywordTok{read\_excel}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data/xlsx"}\NormalTok{, }\StringTok{"2020{-}21 Professional Personnel Individual Staff Report updated.xlsx"}\NormalTok{)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{PublicID =} \KeywordTok{as.numeric}\NormalTok{(PublicID)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{YearsInEd =}\NormalTok{ YearsInED) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{AnnualSalary =} \KeywordTok{ifelse}\NormalTok{(AnnualSalary }\OperatorTok{==}\StringTok{ "Salary Excluded for Fictitious"}\NormalTok{, }\OtherTok{NA}\NormalTok{, AnnualSalary))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I1480 / R1480C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I1901 / R1901C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I1902 / R1902C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I2033 / R2033C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I2082 / R2082C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I5809 / R5809C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I6398 / R6398C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I9150 / R9150C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I17068 / R17068C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I17069 / R17069C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I17070 / R17070C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I17071 / R17071C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I17072 / R17072C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I17765 / R17765C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I17766 / R17766C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I17767 / R17767C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I19016 / R19016C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I19017 / R19017C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I19018 / R19018C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I19019 / R19019C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I20031 / R20031C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I20032 / R20032C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I21410 / R21410C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I21411 / R21411C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I21753 / R21753C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I22802 / R22802C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I22803 / R22803C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I22804 / R22804C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I22805 / R22805C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I22806 / R22806C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I22807 / R22807C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I22808 / R22808C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I22809 / R22809C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I22810 / R22810C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I22811 / R22811C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I28616 / R28616C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I29840 / R29840C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I29841 / R29841C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I29842 / R29842C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I29843 / R29843C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I29844 / R29844C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I29845 / R29845C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I29846 / R29846C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I29847 / R29847C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I29848 / R29848C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I29849 / R29849C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I29850 / R29850C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I29851 / R29851C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I29852 / R29852C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I29853 / R29853C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I29854 / R29854C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I29855 / R29855C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I29856 / R29856C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I29857 / R29857C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I29858 / R29858C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I29859 / R29859C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I29860 / R29860C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I29861 / R29861C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I29862 / R29862C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I29863 / R29863C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I30001 / R30001C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I30002 / R30002C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I30003 / R30003C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I30004 / R30004C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I31581 / R31581C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I31582 / R31582C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I31583 / R31583C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I31584 / R31584C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I31585 / R31585C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I31586 / R31586C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I31587 / R31587C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I31588 / R31588C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I31589 / R31589C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I31590 / R31590C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I31591 / R31591C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I31592 / R31592C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I31593 / R31593C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I31594 / R31594C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I31595 / R31595C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I31596 / R31596C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I31597 / R31597C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I31598 / R31598C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I31599 / R31599C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I35147 / R35147C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I35148 / R35148C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I45463 / R45463C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I46134 / R46134C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I46135 / R46135C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I46557 / R46557C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I47531 / R47531C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I47969 / R47969C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I48529 / R48529C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I48530 / R48530C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I57204 / R57204C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I57267 / R57267C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I58521 / R58521C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I58522 / R58522C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I58571 / R58571C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I60579 / R60579C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I60644 / R60644C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I60645 / R60645C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I60646 / R60646C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I60647 / R60647C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61757 / R61757C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61758 / R61758C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61759 / R61759C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61760 / R61760C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61761 / R61761C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61764 / R61764C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61765 / R61765C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61766 / R61766C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61767 / R61767C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61768 / R61768C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61769 / R61769C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61770 / R61770C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61771 / R61771C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61772 / R61772C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61773 / R61773C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61774 / R61774C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61775 / R61775C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61776 / R61776C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61777 / R61777C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61778 / R61778C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61779 / R61779C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61780 / R61780C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61781 / R61781C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61782 / R61782C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61783 / R61783C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61784 / R61784C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61785 / R61785C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61786 / R61786C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61787 / R61787C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61788 / R61788C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61789 / R61789C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61790 / R61790C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I61791 / R61791C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I63785 / R63785C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I63786 / R63786C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I63787 / R63787C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I63788 / R63788C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I63789 / R63789C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I63790 / R63790C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I63791 / R63791C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I63792 / R63792C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I63793 / R63793C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I63794 / R63794C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I63795 / R63795C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I63796 / R63796C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I63797 / R63797C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I63798 / R63798C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I63799 / R63799C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I63800 / R63800C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I63801 / R63801C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I63802 / R63802C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I63928 / R63928C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I63929 / R63929C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I63930 / R63930C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I63931 / R63931C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I63932 / R63932C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I64190 / R64190C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I64191 / R64191C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66427 / R66427C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66503 / R66503C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66504 / R66504C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66505 / R66505C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66506 / R66506C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66507 / R66507C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66508 / R66508C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66509 / R66509C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66510 / R66510C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66511 / R66511C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66512 / R66512C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66513 / R66513C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66514 / R66514C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66515 / R66515C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66516 / R66516C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66517 / R66517C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66518 / R66518C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66519 / R66519C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66520 / R66520C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66521 / R66521C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66522 / R66522C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66523 / R66523C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66524 / R66524C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66525 / R66525C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66526 / R66526C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66527 / R66527C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66528 / R66528C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66529 / R66529C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66530 / R66530C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66531 / R66531C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66532 / R66532C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I66533 / R66533C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I67601 / R67601C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I67602 / R67602C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I67603 / R67603C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I67604 / R67604C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I67605 / R67605C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I67606 / R67606C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I67607 / R67607C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I67608 / R67608C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I67609 / R67609C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I67610 / R67610C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I67611 / R67611C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I67612 / R67612C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I67613 / R67613C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I67614 / R67614C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I67615 / R67615C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I67616 / R67616C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I67617 / R67617C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I67618 / R67618C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I67619 / R67619C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I67620 / R67620C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I67768 / R67768C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I67769 / R67769C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I67770 / R67770C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I67771 / R67771C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I67772 / R67772C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I67773 / R67773C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I67970 / R67970C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I68204 / R68204C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I70194 / R70194C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I70195 / R70195C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I70196 / R70196C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I70197 / R70197C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I70198 / R70198C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I70199 / R70199C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I70200 / R70200C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I70201 / R70201C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I70202 / R70202C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I70203 / R70203C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I70204 / R70204C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I70205 / R70205C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I71081 / R71081C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I71082 / R71082C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I71083 / R71083C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I71084 / R71084C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I71184 / R71184C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I71185 / R71185C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I71186 / R71186C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I71187 / R71187C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I71188 / R71188C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I71189 / R71189C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I71190 / R71190C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I71191 / R71191C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I71192 / R71192C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I71193 / R71193C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I71194 / R71194C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I71195 / R71195C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I71196 / R71196C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I71197 / R71197C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I71198 / R71198C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I71199 / R71199C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I71200 / R71200C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I71201 / R71201C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I71202 / R71202C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I71203 / R71203C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I73959 / R73959C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I73960 / R73960C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I73961 / R73961C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I73962 / R73962C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I73963 / R73963C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I73964 / R73964C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I77428 / R77428C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I80751 / R80751C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I80990 / R80990C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I81795 / R81795C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I84097 / R84097C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I86312 / R86312C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I87428 / R87428C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I87876 / R87876C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I87941 / R87941C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I88782 / R88782C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I89051 / R89051C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I89623 / R89623C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I89624 / R89624C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I90457 / R90457C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I91859 / R91859C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I91860 / R91860C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I91873 / R91873C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I99145 / R99145C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100103 / R100103C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100104 / R100104C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100105 / R100105C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100106 / R100106C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100107 / R100107C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100108 / R100108C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100109 / R100109C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100110 / R100110C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100111 / R100111C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100112 / R100112C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100113 / R100113C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100114 / R100114C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100115 / R100115C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100116 / R100116C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100117 / R100117C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100118 / R100118C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100119 / R100119C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100120 / R100120C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100121 / R100121C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100122 / R100122C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100123 / R100123C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100124 / R100124C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100125 / R100125C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100126 / R100126C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100127 / R100127C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100128 / R100128C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100129 / R100129C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100130 / R100130C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100131 / R100131C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100132 / R100132C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100133 / R100133C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100134 / R100134C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100135 / R100135C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100136 / R100136C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100137 / R100137C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100138 / R100138C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100139 / R100139C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100140 / R100140C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100141 / R100141C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100142 / R100142C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100503 / R100503C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100504 / R100504C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100505 / R100505C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100506 / R100506C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100507 / R100507C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100508 / R100508C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100509 / R100509C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100510 / R100510C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100511 / R100511C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100512 / R100512C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100513 / R100513C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100551 / R100551C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100552 / R100552C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100553 / R100553C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100554 / R100554C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100555 / R100555C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100556 / R100556C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100557 / R100557C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100558 / R100558C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100559 / R100559C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100560 / R100560C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100561 / R100561C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100562 / R100562C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100563 / R100563C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100564 / R100564C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100565 / R100565C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100566 / R100566C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100567 / R100567C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100568 / R100568C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100569 / R100569C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100570 / R100570C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100571 / R100571C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100572 / R100572C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100573 / R100573C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100574 / R100574C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100575 / R100575C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100576 / R100576C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100577 / R100577C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100578 / R100578C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100579 / R100579C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100580 / R100580C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100581 / R100581C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100582 / R100582C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100583 / R100583C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100584 / R100584C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100585 / R100585C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100586 / R100586C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100587 / R100587C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100588 / R100588C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100589 / R100589C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100590 / R100590C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100591 / R100591C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100592 / R100592C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100593 / R100593C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100594 / R100594C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100595 / R100595C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100596 / R100596C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100597 / R100597C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100598 / R100598C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100599 / R100599C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100600 / R100600C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100601 / R100601C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100602 / R100602C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100603 / R100603C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100604 / R100604C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100605 / R100605C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100606 / R100606C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100607 / R100607C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100608 / R100608C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100609 / R100609C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100610 / R100610C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100611 / R100611C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100612 / R100612C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100613 / R100613C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100614 / R100614C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100615 / R100615C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100616 / R100616C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100617 / R100617C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100618 / R100618C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100619 / R100619C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100620 / R100620C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100621 / R100621C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100622 / R100622C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100623 / R100623C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100624 / R100624C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100625 / R100625C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100626 / R100626C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100627 / R100627C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100628 / R100628C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100629 / R100629C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100630 / R100630C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100631 / R100631C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100632 / R100632C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100633 / R100633C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100634 / R100634C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100635 / R100635C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100636 / R100636C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100637 / R100637C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100638 / R100638C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100639 / R100639C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100640 / R100640C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100641 / R100641C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100642 / R100642C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100643 / R100643C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100644 / R100644C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100645 / R100645C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100646 / R100646C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100647 / R100647C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100648 / R100648C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100649 / R100649C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100650 / R100650C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100651 / R100651C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100652 / R100652C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100653 / R100653C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100654 / R100654C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100655 / R100655C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100656 / R100656C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100657 / R100657C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100658 / R100658C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100659 / R100659C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100660 / R100660C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100661 / R100661C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100662 / R100662C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100818 / R100818C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100819 / R100819C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100820 / R100820C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100821 / R100821C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100822 / R100822C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100823 / R100823C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100824 / R100824C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100825 / R100825C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100826 / R100826C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100827 / R100827C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100828 / R100828C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100829 / R100829C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I100876 / R100876C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I101653 / R101653C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I105669 / R105669C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I105670 / R105670C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I105671 / R105671C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I105672 / R105672C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I108474 / R108474C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I109696 / R109696C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I109697 / R109697C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I109698 / R109698C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I109699 / R109699C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I109728 / R109728C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I109729 / R109729C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I109730 / R109730C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I109731 / R109731C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I109732 / R109732C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I109733 / R109733C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I109734 / R109734C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I109735 / R109735C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I109736 / R109736C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I109737 / R109737C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I109738 / R109738C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I109739 / R109739C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I109740 / R109740C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I109741 / R109741C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I109742 / R109742C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I109743 / R109743C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I109744 / R109744C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I109745 / R109745C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I109746 / R109746C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I109747 / R109747C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I109748 / R109748C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I109749 / R109749C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I111361 / R111361C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I114612 / R114612C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I114673 / R114673C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I114674 / R114674C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I114675 / R114675C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I114676 / R114676C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I114677 / R114677C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I115551 / R115551C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I115840 / R115840C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I115894 / R115894C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I118844 / R118844C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122051 / R122051C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122052 / R122052C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122053 / R122053C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122054 / R122054C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122055 / R122055C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122056 / R122056C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122057 / R122057C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122058 / R122058C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122059 / R122059C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122060 / R122060C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122061 / R122061C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122062 / R122062C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122063 / R122063C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122064 / R122064C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122065 / R122065C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122066 / R122066C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122067 / R122067C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122068 / R122068C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122069 / R122069C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122070 / R122070C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122071 / R122071C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122072 / R122072C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122073 / R122073C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122074 / R122074C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122075 / R122075C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122076 / R122076C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122077 / R122077C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122078 / R122078C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122079 / R122079C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122080 / R122080C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122081 / R122081C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122082 / R122082C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122083 / R122083C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122084 / R122084C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I122085 / R122085C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I127436 / R127436C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I127459 / R127459C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I131065 / R131065C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I131066 / R131066C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I131067 / R131067C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I131068 / R131068C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I131069 / R131069C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I131070 / R131070C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I131071 / R131071C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I131072 / R131072C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I131073 / R131073C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I131074 / R131074C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I131075 / R131075C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I131076 / R131076C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I131077 / R131077C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I131078 / R131078C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I131079 / R131079C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I131080 / R131080C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I131081 / R131081C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I131082 / R131082C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I131083 / R131083C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I131084 / R131084C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I133074 / R133074C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I133075 / R133075C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I133076 / R133076C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I133077 / R133077C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I133078 / R133078C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I133079 / R133079C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I133080 / R133080C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I133081 / R133081C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I133082 / R133082C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I133083 / R133083C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I133084 / R133084C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I133085 / R133085C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I141255 / R141255C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I141256 / R141256C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I141257 / R141257C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I148117 / R148117C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I148118 / R148118C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I148119 / R148119C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I148120 / R148120C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I151768 / R151768C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I158589 / R158589C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I162535 / R162535C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I162536 / R162536C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165914 / R165914C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165915 / R165915C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165916 / R165916C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165917 / R165917C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165918 / R165918C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165919 / R165919C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165920 / R165920C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165921 / R165921C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165922 / R165922C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165923 / R165923C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165924 / R165924C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165925 / R165925C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165926 / R165926C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165927 / R165927C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165928 / R165928C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165929 / R165929C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165930 / R165930C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165931 / R165931C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165932 / R165932C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165933 / R165933C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165934 / R165934C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165935 / R165935C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165936 / R165936C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165937 / R165937C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165938 / R165938C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165939 / R165939C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165940 / R165940C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165941 / R165941C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165942 / R165942C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165943 / R165943C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165944 / R165944C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165945 / R165945C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165946 / R165946C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165947 / R165947C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165948 / R165948C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165949 / R165949C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165950 / R165950C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165951 / R165951C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165952 / R165952C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165953 / R165953C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165954 / R165954C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165955 / R165955C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165956 / R165956C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165957 / R165957C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165958 / R165958C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165959 / R165959C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165960 / R165960C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165961 / R165961C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165962 / R165962C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165963 / R165963C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165964 / R165964C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165965 / R165965C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165966 / R165966C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165967 / R165967C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165968 / R165968C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165969 / R165969C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165970 / R165970C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165971 / R165971C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165972 / R165972C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165973 / R165973C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165974 / R165974C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165975 / R165975C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165976 / R165976C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165977 / R165977C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165978 / R165978C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165979 / R165979C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165980 / R165980C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165981 / R165981C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165982 / R165982C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165983 / R165983C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165984 / R165984C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165985 / R165985C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165986 / R165986C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165987 / R165987C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I165988 / R165988C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I166468 / R166468C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I168334 / R168334C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I169152 / R169152C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I169452 / R169452C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I169966 / R169966C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I169967 / R169967C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I170084 / R170084C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I172228 / R172228C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I172229 / R172229C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I172230 / R172230C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I172231 / R172231C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I172355 / R172355C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I172356 / R172356C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I172357 / R172357C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I172358 / R172358C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I172359 / R172359C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I172360 / R172360C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I172361 / R172361C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I172362 / R172362C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I172363 / R172363C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I172364 / R172364C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I173155 / R173155C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I173318 / R173318C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I173319 / R173319C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I177714 / R177714C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I178284 / R178284C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I181065 / R181065C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188586 / R188586C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188587 / R188587C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188588 / R188588C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188589 / R188589C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188590 / R188590C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188591 / R188591C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188592 / R188592C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188593 / R188593C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188594 / R188594C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188595 / R188595C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188596 / R188596C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188597 / R188597C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188598 / R188598C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188599 / R188599C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188600 / R188600C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188601 / R188601C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188602 / R188602C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188603 / R188603C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188604 / R188604C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188605 / R188605C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188606 / R188606C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188607 / R188607C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188608 / R188608C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188609 / R188609C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188610 / R188610C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188611 / R188611C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188612 / R188612C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188613 / R188613C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188614 / R188614C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188615 / R188615C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188616 / R188616C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188617 / R188617C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188618 / R188618C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188619 / R188619C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188620 / R188620C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188621 / R188621C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188622 / R188622C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188623 / R188623C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188624 / R188624C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188625 / R188625C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188626 / R188626C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188627 / R188627C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188628 / R188628C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188629 / R188629C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188864 / R188864C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188865 / R188865C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188866 / R188866C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188867 / R188867C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188868 / R188868C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188869 / R188869C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188870 / R188870C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188871 / R188871C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188872 / R188872C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188873 / R188873C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188874 / R188874C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188875 / R188875C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188876 / R188876C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188877 / R188877C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188878 / R188878C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188879 / R188879C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188880 / R188880C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188881 / R188881C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188882 / R188882C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188883 / R188883C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188884 / R188884C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188885 / R188885C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188886 / R188886C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188887 / R188887C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188888 / R188888C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188889 / R188889C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188890 / R188890C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188891 / R188891C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188892 / R188892C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188893 / R188893C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188894 / R188894C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188895 / R188895C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188896 / R188896C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188897 / R188897C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188898 / R188898C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188899 / R188899C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188900 / R188900C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188901 / R188901C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188902 / R188902C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188903 / R188903C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188904 / R188904C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188905 / R188905C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188906 / R188906C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188907 / R188907C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188908 / R188908C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188909 / R188909C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188910 / R188910C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188911 / R188911C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188912 / R188912C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188913 / R188913C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188914 / R188914C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188915 / R188915C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188916 / R188916C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188917 / R188917C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188918 / R188918C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188919 / R188919C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188920 / R188920C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I188921 / R188921C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+## Expecting numeric in I190439 / R190439C9: got 'Salary Excluded for Fictitious'
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_}\DecValTok{2013}\NormalTok{ \textless{}{-}}\StringTok{ }\KeywordTok{read\_excel}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data/xlsx"}\NormalTok{, }\StringTok{"2013{-}14 Professional Personnel Individual Staff Report.xlsx"}\NormalTok{))}
+
+\NormalTok{data\_}\DecValTok{2014}\NormalTok{ \textless{}{-}}\StringTok{ }\KeywordTok{read\_excel}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data/xlsx"}\NormalTok{, }\StringTok{"2014{-}15 Professional Personnel Individual Staff Report.xlsx"}\NormalTok{))}
+
+\NormalTok{data\_}\DecValTok{2015}\NormalTok{ \textless{}{-}}\StringTok{ }\KeywordTok{read\_excel}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data/xlsx"}\NormalTok{, }\StringTok{"2015{-}16 Professional Personnel Individual Staff Report.xlsx"}\NormalTok{))}
+
+\NormalTok{data\_}\DecValTok{2016}\NormalTok{ \textless{}{-}}\StringTok{ }\KeywordTok{read\_excel}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data/xlsx"}\NormalTok{, }\StringTok{"2016{-}17 Professional Personnel Individual Staff Report.xlsx"}\NormalTok{))}
+
+\NormalTok{data\_}\DecValTok{2017}\NormalTok{ \textless{}{-}}\StringTok{ }\KeywordTok{read\_excel}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data/xlsx"}\NormalTok{, }\StringTok{"2017{-}18 Professional Personnel Individual Staff Report.xlsx"}\NormalTok{))}
+
+\NormalTok{data\_}\DecValTok{2018}\NormalTok{ \textless{}{-}}\StringTok{ }\KeywordTok{read\_excel}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data/xlsx"}\NormalTok{, }\StringTok{"2018{-}19 Professional Personnel Individual Staff Report.xlsx"}\NormalTok{)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{YearsInEd =}\NormalTok{ YearsInED)}
+
+\NormalTok{data\_}\DecValTok{2019}\NormalTok{ \textless{}{-}}\StringTok{ }\KeywordTok{read\_excel}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data/xlsx"}\NormalTok{, }\StringTok{"2019{-}20 Professional Personnel Individual Staff Report.xlsx"}\NormalTok{)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{YearsInEd =}\NormalTok{ YearsInED)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_list \textless{}{-}}\StringTok{ }\KeywordTok{list}\NormalTok{(data\_}\DecValTok{2013}\NormalTok{, data\_}\DecValTok{2014}\NormalTok{, data\_}\DecValTok{2015}\NormalTok{, data\_}\DecValTok{2016}\NormalTok{, data\_}\DecValTok{2017}\NormalTok{, data\_}\DecValTok{2018}\NormalTok{, data\_}\DecValTok{2019}\NormalTok{, data\_}\DecValTok{2020}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_list \textless{}{-}}\StringTok{ }\KeywordTok{map}\NormalTok{(data\_list, }\ControlFlowTok{function}\NormalTok{(x)\{x\textless{}{-}x }\OperatorTok{\%\textgreater{}\%}\StringTok{ }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\NormalTok{SchNum }\OperatorTok{\%in\%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"9999"}\NormalTok{, }\StringTok{"Off{-}Site"}\NormalTok{)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\NormalTok{PublicID }\OperatorTok{\%in\%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1880041809}\NormalTok{, }\DecValTok{{-}1629249266}\NormalTok{))\})}
+
+\NormalTok{temp \textless{}{-}}\StringTok{ }\KeywordTok{lapply}\NormalTok{(data\_list, }\ControlFlowTok{function}\NormalTok{(x)\{x \textless{}{-}}\StringTok{ }\NormalTok{x }\OperatorTok{\%\textgreater{}\%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(SY, PublicID, YearsInEd) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{YearsInEd =} \KeywordTok{as.numeric}\NormalTok{(YearsInEd)); }\KeywordTok{return}\NormalTok{ (x)\})}
+
+\KeywordTok{names}\NormalTok{(temp) \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"data\_2013\_short"}\NormalTok{, }\StringTok{"data\_2014\_short"}\NormalTok{, }\StringTok{"data\_2015\_short"}\NormalTok{, }\StringTok{"data\_2016\_short"}\NormalTok{, }\StringTok{"data\_2017\_short"}\NormalTok{, }\StringTok{"data\_2018\_short"}\NormalTok{,}\StringTok{"data\_2019\_short"}\NormalTok{, }\StringTok{"data\_2020\_short"}\NormalTok{)}
+
+\KeywordTok{list2env}\NormalTok{(temp, }\DataTypeTok{envir =}\NormalTok{ .GlobalEnv)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## <environment: R_GlobalEnv>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# If the same person has different years of exp: choose the max}
+\CommentTok{\# First, check how many cases exist}
+\NormalTok{data\_}\DecValTok{2013}\NormalTok{\_short }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{group\_by}\NormalTok{(PublicID) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{YearsInEd\_1 =} \KeywordTok{max}\NormalTok{(YearsInEd)) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{diff =}\NormalTok{ YearsInEd\_}\DecValTok{1} \OperatorTok{{-}}\StringTok{ }\NormalTok{YearsInEd) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(diff }\OperatorTok{!=}\StringTok{ }\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 315 x 5
+## # Groups:   PublicID [248]
+##    SY         PublicID YearsInEd YearsInEd_1  diff
+##    <chr>         <dbl>     <dbl>       <dbl> <dbl>
+##  1 2013-14 -2099672503        18          31    13
+##  2 2013-14 -2077158660         4           6     2
+##  3 2013-14 -2145511776         5           6     1
+##  4 2013-14 -2032671774         4           9     5
+##  5 2013-14 -1995010515         1          15    14
+##  6 2013-14 -1995010515         1          15    14
+##  7 2013-14 -1982095440         6           8     2
+##  8 2013-14 -1978779918        14          15     1
+##  9 2013-14 -1956382670         2           6     4
+## 10 2013-14 -1956382670         2           6     4
+## # ... with 305 more rows
+\end{verbatim}
+
+2013: 315 2014: 379 2015: 324 2016: 353 2017: 332 2018: 255 2019: 258
+2020: 697
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{choose\_max \textless{}{-}}\StringTok{ }\ControlFlowTok{function}\NormalTok{(data) \{}
+\NormalTok{  data \textless{}{-}}\StringTok{ }\NormalTok{data }\OperatorTok{\%\textgreater{}\%}
+\StringTok{    }\KeywordTok{group\_by}\NormalTok{(PublicID) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{YearsInEd =} \KeywordTok{max}\NormalTok{(YearsInEd)) }
+\NormalTok{  data \textless{}{-}}\StringTok{ }\KeywordTok{distinct}\NormalTok{(data, }\DataTypeTok{.keep\_all =}\NormalTok{ T)}
+  \KeywordTok{return}\NormalTok{(data)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_list\_short \textless{}{-}}\StringTok{ }\KeywordTok{list}\NormalTok{(data\_}\DecValTok{2013}\NormalTok{\_short, data\_}\DecValTok{2014}\NormalTok{\_short, data\_}\DecValTok{2015}\NormalTok{\_short, data\_}\DecValTok{2016}\NormalTok{\_short, data\_}\DecValTok{2017}\NormalTok{\_short, data\_}\DecValTok{2018}\NormalTok{\_short, data\_}\DecValTok{2019}\NormalTok{\_short, data\_}\DecValTok{2020}\NormalTok{\_short)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_list\_short \textless{}{-}}\StringTok{ }\KeywordTok{map}\NormalTok{(data\_list\_short, choose\_max) }
+\KeywordTok{names}\NormalTok{(data\_list\_short) \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"data\_2013\_short"}\NormalTok{,}\StringTok{"data\_2014\_short"}\NormalTok{, }\StringTok{"data\_2015\_short"}\NormalTok{, }\StringTok{"data\_2016\_short"}\NormalTok{, }\StringTok{"data\_2017\_short"}\NormalTok{, }\StringTok{"data\_2018\_short"}\NormalTok{,}\StringTok{"data\_2019\_short"}\NormalTok{, }\StringTok{"data\_2020\_short"}\NormalTok{)}
+
+\KeywordTok{list2env}\NormalTok{(data\_list\_short, }\DataTypeTok{envir =}\NormalTok{ .GlobalEnv)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## <environment: R_GlobalEnv>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_}\DecValTok{13}\NormalTok{\_}\DecValTok{20}\NormalTok{\_short \textless{}{-}}\StringTok{ }\NormalTok{data\_}\DecValTok{2013}\NormalTok{\_short }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{full\_join}\NormalTok{(data\_}\DecValTok{2014}\NormalTok{\_short, }\DataTypeTok{by =} \StringTok{"PublicID"}\NormalTok{) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{full\_join}\NormalTok{(data\_}\DecValTok{2015}\NormalTok{\_short, }\DataTypeTok{by =} \StringTok{"PublicID"}\NormalTok{) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{full\_join}\NormalTok{(data\_}\DecValTok{2016}\NormalTok{\_short, }\DataTypeTok{by =} \StringTok{"PublicID"}\NormalTok{) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{full\_join}\NormalTok{(data\_}\DecValTok{2017}\NormalTok{\_short, }\DataTypeTok{by =} \StringTok{"PublicID"}\NormalTok{) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{full\_join}\NormalTok{(data\_}\DecValTok{2018}\NormalTok{\_short, }\DataTypeTok{by =} \StringTok{"PublicID"}\NormalTok{) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{full\_join}\NormalTok{(data\_}\DecValTok{2019}\NormalTok{\_short, }\DataTypeTok{by =} \StringTok{"PublicID"}\NormalTok{) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{full\_join}\NormalTok{(data\_}\DecValTok{2020}\NormalTok{\_short, }\DataTypeTok{by =} \StringTok{"PublicID"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data\_}\DecValTok{13}\NormalTok{\_}\DecValTok{20}\NormalTok{\_short \textless{}{-}}\StringTok{ }\NormalTok{data\_}\DecValTok{13}\NormalTok{\_}\DecValTok{20}\NormalTok{\_short }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Y13 =}\NormalTok{ YearsInEd.x, }\DataTypeTok{Y14 =}\NormalTok{ YearsInEd.y, }\DataTypeTok{Y15 =}\NormalTok{ YearsInEd.x.x,}
+         \DataTypeTok{Y16 =}\NormalTok{ YearsInEd.y.y, }\DataTypeTok{Y17 =}\NormalTok{ YearsInEd.x.x.x, }\DataTypeTok{Y18 =}\NormalTok{ YearsInEd.y.y.y, }
+         \DataTypeTok{Y19 =}\NormalTok{ YearsInEd.x.x.x.x, }\DataTypeTok{Y20 =}\NormalTok{ YearsInEd.y.y.y.y) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(PublicID, Y13}\OperatorTok{:}\NormalTok{Y20)}
+\end{Highlighting}
+\end{Shaded}
+
+There are 199,729 professionals from 2013 to 2020.
+
+How many professionals have no problems in yrs of exp? (i.e.~when not
+NA, increment by 1)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{diff\_data \textless{}{-}}\StringTok{ }\NormalTok{data\_}\DecValTok{13}\NormalTok{\_}\DecValTok{20}\NormalTok{\_short }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{diff14 =}\NormalTok{ Y14 }\OperatorTok{{-}}\StringTok{ }\NormalTok{Y13,}
+         \DataTypeTok{diff15 =}\NormalTok{ Y15 }\OperatorTok{{-}}\StringTok{ }\NormalTok{Y14,}
+         \DataTypeTok{diff16 =}\NormalTok{ Y16 }\OperatorTok{{-}}\StringTok{ }\NormalTok{Y15,}
+         \DataTypeTok{diff17 =}\NormalTok{ Y17 }\OperatorTok{{-}}\StringTok{ }\NormalTok{Y16,}
+         \DataTypeTok{diff18 =}\NormalTok{ Y18 }\OperatorTok{{-}}\StringTok{ }\NormalTok{Y17,}
+         \DataTypeTok{diff19 =}\NormalTok{ Y19 }\OperatorTok{{-}}\StringTok{ }\NormalTok{Y18,}
+         \DataTypeTok{diff20 =}\NormalTok{ Y20 }\OperatorTok{{-}}\StringTok{ }\NormalTok{Y19) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{filter\_at}\NormalTok{(}\KeywordTok{vars}\NormalTok{(diff14}\OperatorTok{:}\NormalTok{diff20),}\KeywordTok{any\_vars}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(.))) }\CommentTok{\# remove people that were only present in Y13}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Find mean and sd for the differences. If mean = 1 and sd = 0 (or sd NA), it has }
+\NormalTok{diff\_data}\OperatorTok{$}\NormalTok{mean \textless{}{-}}\StringTok{ }\KeywordTok{rowMeans}\NormalTok{(diff\_data[ , }\DecValTok{10}\OperatorTok{:}\DecValTok{16}\NormalTok{], }\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{)}
+\NormalTok{diff\_data \textless{}{-}}\StringTok{ }\NormalTok{diff\_data }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{rowwise}\NormalTok{() }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{sd =} \KeywordTok{sd}\NormalTok{(}\KeywordTok{c}\NormalTok{(diff14, diff15, diff16, diff17, diff18, diff19, diff20), }\DataTypeTok{na.rm =}\NormalTok{ T))}
+\NormalTok{diff\_data }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(mean }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{\&}\StringTok{ }\NormalTok{(sd }\OperatorTok{==}\StringTok{ }\DecValTok{0} \OperatorTok{|}\StringTok{ }\KeywordTok{is.na}\NormalTok{(sd) }\OperatorTok{==}\StringTok{ }\NormalTok{T))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 119,225 x 18
+## # Rowwise:  PublicID
+##    PublicID   Y13   Y14   Y15   Y16   Y17   Y18   Y19   Y20 diff14 diff15 diff16
+##       <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>  <dbl>  <dbl>
+##  1  -2.14e9     8     9    10    11    12    13    14    15      1      1      1
+##  2  -2.14e9     7     8     9    10    11    12    13    14      1      1      1
+##  3  -2.14e9     5     6     7     8     9    10    11    12      1      1      1
+##  4  -2.14e9    14    15    16    17    18    19    20    21      1      1      1
+##  5  -2.14e9    11    12    13    14    15    16    17    18      1      1      1
+##  6  -2.14e9    13    14    15    16    17    18    19    20      1      1      1
+##  7  -2.14e9    12    13    14    15    16    17    18    19      1      1      1
+##  8  -2.14e9    10    11    12    13    14    15    16    17      1      1      1
+##  9  -2.14e9     1     2     3     4     5     6     7     8      1      1      1
+## 10  -2.14e9    12    13    14    15    16    17    18    19      1      1      1
+## # ... with 119,215 more rows, and 6 more variables: diff17 <dbl>, diff18 <dbl>,
+## #   diff19 <dbl>, diff20 <dbl>, mean <dbl>, sd <dbl>
+\end{verbatim}
+
+Out of 181185 cases, 119225 have no issues at all.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{diff\_data}\OperatorTok{$}\NormalTok{problem\_n \textless{}{-}}\StringTok{ }\KeywordTok{rowSums}\NormalTok{(diff\_data[ , }\DecValTok{10}\OperatorTok{:}\DecValTok{16}\NormalTok{] }\OperatorTok{!=}\StringTok{ }\DecValTok{1}\NormalTok{, }\DataTypeTok{na.rm =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{diff\_data }\OperatorTok{\%\textgreater{}\%}\StringTok{ }\KeywordTok{filter}\NormalTok{(problem\_n }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 119,225 x 19
+## # Rowwise:  PublicID
+##    PublicID   Y13   Y14   Y15   Y16   Y17   Y18   Y19   Y20 diff14 diff15 diff16
+##       <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>  <dbl>  <dbl>
+##  1  -2.14e9     8     9    10    11    12    13    14    15      1      1      1
+##  2  -2.14e9     7     8     9    10    11    12    13    14      1      1      1
+##  3  -2.14e9     5     6     7     8     9    10    11    12      1      1      1
+##  4  -2.14e9    14    15    16    17    18    19    20    21      1      1      1
+##  5  -2.14e9    11    12    13    14    15    16    17    18      1      1      1
+##  6  -2.14e9    13    14    15    16    17    18    19    20      1      1      1
+##  7  -2.14e9    12    13    14    15    16    17    18    19      1      1      1
+##  8  -2.14e9    10    11    12    13    14    15    16    17      1      1      1
+##  9  -2.14e9     1     2     3     4     5     6     7     8      1      1      1
+## 10  -2.14e9    12    13    14    15    16    17    18    19      1      1      1
+## # ... with 119,215 more rows, and 7 more variables: diff17 <dbl>, diff18 <dbl>,
+## #   diff19 <dbl>, diff20 <dbl>, mean <dbl>, sd <dbl>, problem_n <dbl>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{diff\_data }\OperatorTok{\%\textgreater{}\%}\StringTok{ }\KeywordTok{filter}\NormalTok{(problem\_n }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 32,111 x 19
+## # Rowwise:  PublicID
+##    PublicID   Y13   Y14   Y15   Y16   Y17   Y18   Y19   Y20 diff14 diff15 diff16
+##       <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>  <dbl>  <dbl>
+##  1  -2.14e9    11    12    11    12    13    14    15    16      1     -1      1
+##  2  -2.14e9     9    10    11    12    13    13    14    15      1      1      1
+##  3  -2.14e9    17    18    18    19    20    21    22    23      1      0      1
+##  4  -2.14e9    17    17    18    19    20    21    22    23      0      1      1
+##  5  -2.14e9     9    10    10    11    12    13    14    15      1      0      1
+##  6  -2.14e9     8    10    11    12    13    14    15    16      2      1      1
+##  7  -2.14e9    21    23    24    25    26    27    28    29      2      1      1
+##  8  -2.14e9     4     6     7     8     9    10    11    12      2      1      1
+##  9  -2.14e9    11    12    13    13    14    15    16    17      1      1      0
+## 10  -2.14e9     6     8     9    10    11    12    13    14      2      1      1
+## # ... with 32,101 more rows, and 7 more variables: diff17 <dbl>, diff18 <dbl>,
+## #   diff19 <dbl>, diff20 <dbl>, mean <dbl>, sd <dbl>, problem_n <dbl>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{diff\_data }\OperatorTok{\%\textgreater{}\%}\StringTok{ }\KeywordTok{filter}\NormalTok{(problem\_n }\OperatorTok{\textgreater{}}\StringTok{ }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 29,849 x 19
+## # Rowwise:  PublicID
+##    PublicID   Y13   Y14   Y15   Y16   Y17   Y18   Y19   Y20 diff14 diff15 diff16
+##       <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>  <dbl>  <dbl>
+##  1  -2.14e9    18    18    20    21    22    23    24    25      0      2      1
+##  2  -2.14e9    17    17    17    24    25    26    27    28      0      0      7
+##  3  -2.14e9     4     1     1     2     3     4     5     6     -3      0      1
+##  4  -2.14e9     6     6     6     6     7     8    12    13      0      0      0
+##  5  -2.14e9    23    23    26    27    28    29    30    NA      0      3      1
+##  6  -2.14e9    25    26    27    25    25    26    27    28      1      1     -2
+##  7  -2.14e9    18    18    19    20    22    23    NA    NA      0      1      1
+##  8  -2.14e9    23    24    25    24    25    23    24    25      1      1     -1
+##  9  -2.14e9    16    17    17    19    20    21    22    23      1      0      2
+## 10  -2.14e9     6     7     7    10    11    12    13    14      1      0      3
+## # ... with 29,839 more rows, and 7 more variables: diff17 <dbl>, diff18 <dbl>,
+## #   diff19 <dbl>, diff20 <dbl>, mean <dbl>, sd <dbl>, problem_n <dbl>
+\end{verbatim}
+
+\end{document}

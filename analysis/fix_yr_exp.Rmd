@@ -2,8 +2,10 @@
 title: "Years of Experience Correction"
 author: "Iris Zhong"
 date: "3/15/2022"
-output: html_document
-editor_options: 
+output:
+  pdf_document: default
+  html_document: default
+editor_options:
   chunk_output_type: inline
 ---
 
@@ -161,4 +163,7 @@ diff_data %>% filter(problem_n == 1)
 diff_data %>% filter(problem_n > 1)
 ```
 
+```{r}
+mosaic::tally(diff_data$diff14)
+```
 

@@ -36,6 +36,38 @@ data_2019 <- read_excel(here("data/xlsx", "2019-20 Professional Personnel Indivi
 
 ```
 
+
+
+
+```{r}
+school_2019_rfa <- read_excel(here("data/xlsx", "Teachers-by-race_2019-20.xlsx")) %>%
+  pull(`School Name`)
+school_2018_rfa <- read_excel(here("data/xlsx", "Teachers-by-race_2018-19.xlsx")) %>%
+  pull(`School Name`)
+school_2017_rfa <- read_excel(here("data/xlsx", "Teachers-by-race_2017-18.xlsx")) %>%
+  pull(`School Name`)
+school_2016_rfa <- read_excel(here("data/xlsx", "Teachers-by-race_2016-17.xlsx")) %>%
+  pull(`School Name`)
+school_2015_rfa <- read_excel(here("data/xlsx", "Teachers-by-race_2015-16.xlsx")) %>%
+  pull(`School Name`)
+school_2014_rfa <- read_excel(here("data/xlsx", "Teachers-by-race_2014-15.xlsx")) %>%
+  pull(`School Name`)
+
+```
+
+```{r}
+rfa_2019 <- read_excel(here("data/xlsx", "Teachers-by-race_2019-20.xlsx")) %>% rename(school_name = `School Name`, teacher_n = `Teachers: Total`)
+rfa_2018 <- read_excel(here("data/xlsx", "Teachers-by-race_2018-19.xlsx")) %>% rename(school_name = `School Name`, teacher_n = `Teachers: Total`)
+rfa_2017 <- read_excel(here("data/xlsx", "Teachers-by-race_2017-18.xlsx")) %>% rename(school_name = `School Name`, teacher_n = `Teachers: Total`)
+rfa_2016 <- read_excel(here("data/xlsx", "Teachers-by-race_2016-17.xlsx")) %>% rename(school_name = `School Name`, teacher_n = `Teachers: Total`)
+rfa_2015 <- read_excel(here("data/xlsx", "Teachers-by-race_2015-16.xlsx")) %>% rename(school_name = `School Name`, teacher_n = `Teachers: Total`)
+rfa_2014 <- read_excel(here("data/xlsx", "Teachers-by-race_2014-15.xlsx")) %>% rename(school_name = `School Name`, teacher_n = `Teachers: Total`)
+
+```
+
+
+
+
 RFA counting method:
 
 > Teacher counts are the full-time equivalent (FTE) of teachers at every school.
@@ -444,5 +476,102 @@ ggplot(teacher_n_compare_9, aes(x = year_list, y = n, color = source, group = so
   geom_point() +
   geom_path() +
   geom_text(aes(label = n), vjust = 0.8, nudge_x = .2)
+```
+
+
+# Check missing schools in nineth try
+
+```{r}
+setdiff(unique(data_2014_9 %>% pull(School)),school_2014_rfa)
+setdiff(school_2014_rfa, unique(data_2014_9 %>% pull(School))) # 2014: two more schools in RFA
+
+setdiff(unique(data_2015_9 %>% pull(School)),school_2015_rfa)
+setdiff(school_2015_rfa, unique(data_2015_9 %>% pull(School)))
+
+setdiff(unique(data_2016_9 %>% pull(School)),school_2016_rfa)
+setdiff(school_2016_rfa, unique(data_2016_9 %>% pull(School)))
+
+setdiff(unique(data_2017_9 %>% pull(School)),school_2017_rfa)
+setdiff(school_2017_rfa, unique(data_2017_9 %>% pull(School))) # 2017: a lot of SDs as schools in RFA
+```
+
+```{r}
+data_2020 %>% filter(SchNum == 9999)%>% filter(School != "Off-Site")
+```
+
+
+
+
+# Tenth try
+
+```{r}
+data_2014_10 <- data_2014_7 %>% filter(School != "Off-Site") %>% filter(!PublicID %in% c(1880041809,-1629249266))
+data_2015_10 <- data_2015_7 %>% filter(School != "Off-Site") %>% filter(!PublicID %in% c(1880041809,-1629249266))
+data_2016_10 <- data_2016_7 %>% filter(School != "Off-Site") %>% filter(!PublicID %in% c(1880041809,-1629249266))
+data_2017_10 <- data_2017_7 %>% filter(School != "Off-Site") %>% filter(!PublicID %in% c(1880041809,-1629249266))
+data_2018_10 <- data_2018_7 %>% filter(School != "Off-Site") %>% filter(!PublicID %in% c(1880041809,-1629249266))
+data_2019_10 <- data_2019_7 %>% filter(School != "Off-Site") %>% filter(!PublicID %in% c(1880041809,-1629249266))
+data_2020_10 <- data_2020_7 %>% filter(School != "Off-Site") %>% filter(!PublicID %in% c(1880041809,-1629249266))
+```
+
+
+```{r}
+data_list_10 <- list(data_2014_10, data_2015_10, data_2016_10, data_2017_10, data_2018_10, data_2019_10, data_2020_10)
+temp <- lapply(data_list_10, clean_data)
+teacher_n_summary_10 <- sapply(temp, function(x){return(sum(x$FTE))})
+```
+
+```{r}
+teacher_n_compare_10 <- data.frame(year_list, teacher_n_summary_10, teacher_n_rfa) %>%
+  pivot_longer(cols = c("teacher_n_summary_10", "teacher_n_rfa"), names_to = "source", values_to = "n")
+```
+
+
+```{r}
+ggplot(teacher_n_compare_10, aes(x = year_list, y = n, color = source, group = source)) +
+  geom_point() +
+  geom_path() +
+  geom_text(aes(label = n), vjust = 0.8, nudge_x = .2)
+```
+
+```{r}
+data_2014 %>% 
+  filter(`CategoryDescription` == "Classroom Teachers") %>% 
+  filter(Status == "Active") %>%
+  #filter(!PublicID %in% c(1880041809,-1629249266)) %>%
+  #filter(!SchNum %in% c("9999", "Off-Site"))  %>%
+  summarize(sum_fte = sum(as.numeric(`FTE%`)/100))
+
+
+data_2015 %>% 
+  filter(`CategoryDescription` == "Classroom Teachers") %>% 
+  filter(Status == "Active") %>%
+  filter(!PublicID %in% c(1880041809,-1629249266)) %>%
+  filter(!SchNum %in% c("9999", "Off-Site"))  %>%
+  summarize(sum_fte = sum(as.numeric(`FTE%`)/100))
+
+data_2017 %>% 
+  filter(`Category Description 2017-` == "Classroom Teachers") %>% 
+  #filter(`Primary Assignment` == "Yes") %>%
+  filter(Status == "Active") %>%
+  #filter(SchNum == "6162") %>% 
+  filter(!PublicID %in% c(1880041809,-1629249266)) %>%
+  #filter(!SchNum %in% c("9999", "Off-Site"))  %>%
+  summarize(sum_fte = sum(as.numeric(`FTE%`)/100))
+```
+
+
+```{r}
+data_2019_9 %>% 
+  group_by(SchNum, School) %>%
+  summarize(sum_fte = sum(as.numeric(`FTE%`)/100)) %>%
+  full_join(rfa_2014, by = c("SchNum" = "School Number", "School" = "school_name")) %>%
+  select(School, SchNum, sum_fte, teacher_n) %>%
+  mutate(diff = round(sum_fte - teacher_n, 3)) %>%
+  filter(diff != 0)
+```
+
+```{r}
+data_2019 %>% filter(SchNum == "Off-Site")
 ```
 
